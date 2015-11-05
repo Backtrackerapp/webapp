@@ -1,0 +1,13 @@
+<div class="left-slider" ng-class="{shown: sliderCtrl.shown}">
+  <view-post 
+  	post='sliderCtrl.post' 
+  	journey='sliderCtrl.journey' 
+  	shown='sliderCtrl.shown' 
+  	ng-if='sliderCtrl.showing === "post"'></view-post>
+
+  <view-highlight 
+  	highlight='sliderCtrl.highlight' 
+  	shown='sliderCtrl.shown' 
+  	ng-if='sliderCtrl.showing === "highlight"'></view-highlight>
+  	
+</div>

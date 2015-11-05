@@ -1,0 +1,13 @@
+<my-marker
+  ng-repeat="highlight in highlightsCtrl.highlights"
+  highlight="{{highlight}}"
+  marker-type="highlight-{{highlight.category}}"
+  marker-width="48"
+  marker-height="53"
+  marker-offset-left="24"
+  marker-offset-top="52"
+  popup="true"
+  lat="{{highlight.latitude}}"
+  lng="{{highlight.longitude}}">
+    <h1>{{highlight.name}}</h1>
+</my-marker>

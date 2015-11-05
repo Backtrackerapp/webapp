@@ -1,0 +1,8 @@
+<div class="user-view-content">
+  <ul class="tabs">
+    <li ng-class="{'active' : contentCtrl.active == 'journeys'}" ng-click="contentCtrl.activate('journeys')">{{user.journey_count}}<span>Journeys</span></li>
+    <li ng-class="{'active' : contentCtrl.active == 'followers'}" ng-click="contentCtrl.activate('followers')">{{user.followed_count}}<span>Followers</span></li>
+    <li ng-class="{'active' : contentCtrl.active == 'following'}" ng-click="contentCtrl.activate('following')">{{user.following_count}}<span>Following</span></li>
+  </ul>
+  <div class="active-tab" ng-include="contentCtrl.template"></div>
+</div>

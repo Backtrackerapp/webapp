@@ -1,0 +1,283 @@
+.left-slider {
+  position: absolute;
+  left: -500px;
+  top: 60px;
+  bottom: 0;
+  background: #fff;
+  width: 500px;
+  z-index: 3;
+  @extend .shadowed;
+  @include transition(left .3s);
+  &.shown {
+    left: 0;
+  }
+  a.close {
+    width: 18px;
+    height: 18px;
+    background-image: url('/images/highlightsx.png');
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  > div {
+    height: 100%;
+  }
+}
+
+.selected-highlight-view {
+  padding: 40px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  padding-bottom: 96px;
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-weight: 500;
+    margin-top: 30px;
+    letter-spacing: 0.8px;
+  }
+  h2 {
+    color: $yellow;
+    margin-bottom: 15px;
+    font-size: 13px;
+  }
+  p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    color: $bodyText;
+  }
+  .buttons {
+    margin-bottom: 20px;
+    .btn-highlight {
+      background: transparent;
+      margin-right: 6px;
+      border: 1px solid $yellow;
+      color: $yellow;
+      padding-left: 40px;
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      background-position: 10px 50%;
+      &.btn-highlight-website {
+        background-image: url('/images/website.png');
+      }
+      &.btn-highlight-website.disabled {
+        background-image: url('/images/websitedisabled.png');
+        border: 1px solid #dde9eb;
+        color: #dde9eb;
+        cursor: default;
+      }
+      &.btn-highlight-map {
+        background-image: url('/images/maps.png');
+      }
+      &.btn-highlight-report {
+        background-image: url('/images/report.png');
+      }
+    }
+  }
+}
+
+.selected-post-view {
+  padding: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  padding-bottom: 104px;
+  a.close {
+    background-image: url('/images/friendsx.png');
+  }
+  &.mine a.close {
+    background-image: url('/images/journeyx.png');
+  }
+  &.hasImage a.close {
+    background-image: url('/images/whitex.png');
+  }
+  .more-icon {
+    display: block;
+    width: 30px;
+    height: 18px;
+    background-image: url('/images/moreblue.png');
+    -webkit-background-size: 30px 6px;
+    background-size: 30px 6px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    position: absolute;
+    cursor: pointer;
+    right: 55px;
+    top: 20px;
+  }
+  &.mine .more-icon {
+    background-image: url('/images/moreorange.png');
+  }
+  &.hasImage .more-icon {
+    background-image: url('/images/more.png');
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 30px;
+    letter-spacing: 0.8px;
+  }
+  h2 {
+    color: $blue;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 13px;
+  }
+  &.mine {
+    h2 {
+      color: $orange;
+    }
+  }
+  .post-image {
+    margin: -40px -40px 30px -40px;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+  }
+  i {
+    display: block;
+    text-align: center;
+    color: $blueWash;
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    color: $bodyText;
+  }
+  .bottom-navigation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid $hairline;
+    height: 64px;
+    .arrow {
+      background-size: 18px 21px;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      width: 64px;
+      height: 64px;
+      position: absolute;
+      cursor: pointer;
+      &.disabled {
+        opacity: .2;
+        cursor: default;
+      }
+      &.arrow-prev {
+        left: 0;
+        background-image: url('/images/leftarrow.png');
+      }
+      &.arrow-next {
+        right: 0;
+        background-image: url('/images/rightarrow.png');
+      }
+    }
+  }
+}
+
+.popup {
+  position: absolute;
+  left: 410px;
+  top: 60px;
+  background: $darkBlue;
+  width: 230px;
+  border-radius: 6px;
+  padding: 10px 0;
+  @extend .shadowed;
+  &:before {
+    content: ' ';
+    @include arrow(top, $darkBlue, 10px);
+    position: absolute;
+    top: -10px;
+    left: 10px;
+  }
+  li {
+    padding: 15px 20px;
+    cursor: pointer;
+    color: $blueWash;
+    &:hover {
+      background: darken($darkBlue, 2%);
+    }
+    &.destructive {
+      color: $errorRed;
+    }
+  }
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #fff;
+  border-top: 1px solid $hairline;
+  .suggested-by {
+    padding: 20px 40px;
+    img {
+      float: left;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      margin-right: 16px;
+    }
+    h3 {
+      color: $bodyText;
+      margin-top: 4px;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    h2 {
+      font-size: 18px;
+      color: $darkBlue;
+    }
+  }
+  .like-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    color: $yellow;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: 30% 50%;
+    background-size: 20px 20px;
+    -webkit-background-size: 20px 20px;
+    background-image: url('/images/heart.png');
+    border-left: 1px solid $hairline;
+    cursor: pointer;
+    &.liked {
+      background-image: url('/images/heartfilled.png');
+    }
+    &.liking {
+      background-image: none;
+      span {
+        display: none;
+      }
+    }
+    .loading-gif {
+      margin-top: 28px;
+    }
+    span {
+      position: absolute;
+      right: 20px;
+      top: 32px;
+      font-size: 18px;
+    }
+  }
+}

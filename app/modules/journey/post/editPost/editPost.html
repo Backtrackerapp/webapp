@@ -1,0 +1,33 @@
+<div class="edit-post">
+
+  <div class="step" step="editCtrl.step" shown="1">
+    <h1>{{editCtrl.post.name}}</h1>
+    <div class="control">
+      <label>Post Date</label>
+      <datepicker date-format="dd MMM yyyy" date-max-limit="{{editCtrl.today | date:'yyyy-MM-dd'}}">
+        <input ng-model="editCtrl.post.date" type="text"/>
+      </datepicker>
+      <p class="error" ng-show="editCtrl.postDateError">{{ postDateError }}</p>
+    </div>
+    <div class="control">
+      <label>Upload Photo</label>
+      <file-upload files='editCtrl.files' current='editCtrl.post.cover_image'></file-upload>
+    </div>
+    <div class="control">
+      <label>Text</label>
+      <textarea ng-model="editCtrl.post.text" placeholder="Write about your adventure&hellip;"></textarea>
+      <p class="error" ng-show="editCtrl.postTextError">{{ editCtrl.postTextError }}</p>
+    </div>
+  </div>
+
+  <div class="step" step="editCtrl.step" shown="2">
+    <div class="big-step-loader">
+      <img src="/images/bigloader.gif" alt="">
+      <h3>Saving Post</h3>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn btn-darkBlue" ng-click="params.close()">Cancel</a>
+    <a class="btn btn-action" ng-click="editCtrl.save()">Save</a>
+  </div>
+</div>

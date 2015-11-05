@@ -1,0 +1,45 @@
+.pac-container {
+  @extend .shadowed;
+  height: 300px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 1px solid $blueWash;
+  .pac-item {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    padding: 8px;
+    border-bottom: 1px solid $hairline;
+    border-top: none;
+    cursor: pointer;
+    .pac-icon {
+      display: none;
+    }
+    .pac-item-query {
+      color: $darkBlue;
+      font-size: 16px;
+    }
+    > span {
+      color: $bodyText;
+      font-size: 12px;
+    }
+  }
+  &:after {
+    position: absolute;
+    bottom: 4px;
+    width: 140px;
+    right: 4px;
+    text-align: right;
+  }
+}
+
+.autocomplete-results {
+  @extend .shadowed;
+  position: absolute;
+  margin-top: 6px;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  z-index: 4;
+  background: #fff;
+}

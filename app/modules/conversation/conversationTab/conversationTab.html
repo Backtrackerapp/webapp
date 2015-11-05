@@ -1,0 +1,16 @@
+<li ng-class="{active: conversation.active}">
+  <div ng-click="tabCtrl.activateConversation(conversation)" class="bar">
+    <span>{{conversation.other.first_name}} {{conversation.other.last_name}}</span>
+    <a ng-click="tabCtrl.closeConversation(conversation)" class="close"></a>
+  </div>
+  <div class="chat-content" ng-show="conversation.active">
+    <div class="messages-loading" ng-show="conversation.loading" ><loader></loader></div>
+    <ul class="chat-content-messages" scroll-glue>
+      <message ng-repeat="message in conversation.messages" message="message"></message>
+    </ul>
+    <form class="chat-content-actions" ng-submit="tabCtrl.submitMessage(conversation)">
+      <input type="text" auto-focus ng-model="tabCtrl.newMessage" placeholder="Type here&hellip;" value="">
+      <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;">
+    </form>
+  </div>
+</li>

@@ -1,0 +1,64 @@
+<div class="new-post">
+
+  <div class="step" step="newCtrl.step" shown="1">
+    <div class="control">
+      <label>Location</label>
+      <input type="text" auto-focus ng-model="newCtrl.searchField" ng-autocomplete="results" options="newCtrl.autocompleteOptions" placeholder="Search&hellip;" value="">
+      <p class="error" ng-show="newCtrl.searchFieldError">{{ newCtrl.searchFieldError }}</p>
+    </div>
+    <div class="control">
+      <label>Post to</label>
+      <select ng-model="newCtrl.journey" ng-options="journey as journey.name for journey in newCtrl.currentJourneys"></select>
+      <input type="text" ng-model="newCtrl.journey.name" placeholder="New Journey Name" ng-show="newCtrl.journey.id == 0">
+      <p class="error" ng-show="newCtrl.journeyNameError && newCtrl.journeyId == 0">{{ newCtrl.journeyNameError }}</p>
+    </div>
+    <div class="control">
+      <label>Post Date</label>
+      <datepicker date-format="dd MMM yyyy" date-max-limit="{{newCtrl.today | date:'yyyy-MM-dd'}}">
+        <input ng-model="newCtrl.postDate" type="text"/>
+      </datepicker>
+      <p class="error" ng-show="newCtrl.postDateError">{{ newCtrl.postDateError }}</p>
+    </div>
+    <div class="control">
+      <label>Upload Photo</label>
+      <image-dropper files='newCtrl.files'></image-dropper>
+    </div>
+  </div>
+
+  <div class="step" step="newCtrl.step" shown="2">
+    <div class="control">
+      <label>Text</label>
+      <textarea ng-model="newCtrl.postText" placeholder="Write about your adventure&hellip;"></textarea>
+      <p class="error" ng-show="newCtrl.postTextError">{{ newCtrl.postTextError }}</p>
+    </div>
+  </div>
+
+  <div class="step" step="newCtrl.step" shown="3">
+    <div class="big-step-loader">
+      <img src="/images/bigloader.gif" alt="">
+      <h3>Uploading Post</h3>
+    </div>
+  </div>
+
+  <div class="step" step="newCtrl.step" shown="4">
+    <p>Show people where you're thinking of travelling by adding a 'ghost' pin ahead of this post. This lets your followers know where you're headed next.</p>
+    <p>It's optional, just skip this step if you're not sure.</p>
+    <div class="control">
+      <label>Location</label>
+      <input type="text" auto-focus ng-model="newCtrl.ghostSearchField" ng-autocomplete="results" options="newCtrl.autocompleteOptions" placeholder="Search&hellip;" value="">
+      <p class="error" ng-show="newCtrl.ghostSearchFieldError">{{ newCtrl.searchFieldError }}</p>
+    </div>
+  </div>
+
+  <div class="step" step="newCtrl.step" shown="5">
+    <div class="big-step-loader">
+      <img src="/images/bigloader.gif" alt="">
+      <h3>Uploading Ghost Pin</h3>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="btn btn-darkBlue" ng-click="params.close()">{{newCtrl.cancelAction}}</a>
+    <a class="btn btn-action" ng-click="newCtrl.nextStep()">{{newCtrl.action}}</a>
+  </div>
+</div>

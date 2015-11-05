@@ -1,0 +1,15 @@
+<feature-layer data="line"></feature-layer>
+<my-marker ng-repeat="post in journeyCtrl.journey.posts"
+  post="{{post}}"
+  popup="true"
+  marker-type="{{!post.ghost ? (post.can_edit ? 'myPost' : 'post') : 'ghost'}}"
+  marker-width="28"
+  marker-height="28"
+  marker-offset-left="14"
+  marker-offset-top="14"
+  lat="{{post.latitude}}"
+  lng="{{post.longitude}}">
+  <h2 ng-show="post.ghost" style="margin-bottom: 4px;" ng-class="{mine: post.can_edit}">Next stop&hellip;</h2>
+  <h1>{{post.name}}</h1>
+  <h2 ng-hide="post.ghost" ng-class="{mine: post.can_edit}">{{journeyCtrl.parseDate(post.date) | date:"dd MMM yyyy" }}</h2>
+</my-marker>

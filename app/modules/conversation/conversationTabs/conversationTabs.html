@@ -1,0 +1,4 @@
+<ul class="chat-tabs">
+  <conversation-tab ng-repeat="conversation in tabsCtrl.conversations" conversation="conversation"></conversation-tab>
+  <li ng-click="tabsCtrl.showConversations()" class="list-chats"><em class="badge" ng-show="tabsCtrl.showBadge"></em></li>
+</ul>

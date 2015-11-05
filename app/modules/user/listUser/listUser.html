@@ -1,0 +1,10 @@
+<li class="individual-user" data-id="{{user.id}}">
+  <img ng-src="http://graph.facebook.com/{{user.fbid}}/picture?type=square&width=40&height=40" alt="" />
+  <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+  <h3>{{user.current_journey_name}}</h3>
+  <div class="following_button">
+    <a href="" ng-click="userCtrl.follow(user)" class="follow" ng-if="user.following_status == 'not_following'"></a>
+    <a href="" ng-click="userCtrl.unfollow(user)" class="unfollow" ng-if="user.following_status == 'following'"></a>
+    <a href="" class="waiting" ng-if="user.following_status == 'waiting'"></a>
+  </div>
+</li>

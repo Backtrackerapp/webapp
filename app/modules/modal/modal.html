@@ -1,0 +1,7 @@
+<div class="modal-container " ng-class="{shown: modalCtrl.shown}">
+  <div class="modal-overlay" ng-click="modalCtrl.hideModal()"></div>
+  <div class="modal">
+    <h1>{{modalCtrl.title}}</h1>
+    <div class="modal-content" htmlinsert="modalCtrl.template" params="modalCtrl.params"></div>
+  </div>
+</div>

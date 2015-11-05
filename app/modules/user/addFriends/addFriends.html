@@ -1,0 +1,17 @@
+<div class="add-friends">
+  <div class="control" style="position: relative; margin-bottom: 20px;">
+    <label for="">Search People</label>
+    <input type="text" auto-focus ng-model="addCtrl.input" ng-change="addCtrl.searchChanged()">
+    <loader ng-show="addCtrl.loading"></loader>
+    <div class="autocomplete-results table-view" ng-show="addCtrl.results.length > 0">
+      <list-user ng-repeat="user in addCtrl.results" user="user"></list-user>
+    </div>
+  </div>
+
+  <div class="control" ng-show="addCtrl.suggested.length > 0">
+    <label for="">Suggested Friends</label>
+    <div class="table-view bordered-table-view">
+      <list-user ng-repeat="user in addCtrl.suggested" user="user"></list-user>
+    </div>
+  </div>
+</div>

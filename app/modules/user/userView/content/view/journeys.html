@@ -1,0 +1,4 @@
+<ul class="table-view">
+  <list-journey ng-repeat="journey in user.journeys" journey="journey"></list-journey>
+  <li class="no-results" ng-if="user.journeys.length == 0">This user has no journeys</li>
+</ul>

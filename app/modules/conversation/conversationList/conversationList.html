@@ -1,0 +1,17 @@
+<div class="conversation-list" ng-class="{shown: listCtrl.shown}">
+  <div class="conversations-top">
+    <h2>Chats</h2>
+    <a ng-click="listCtrl.closeConversations()" class="close"></a>
+  </div>
+  <div>
+    <ul class="table-view">
+      <li class="table-loader" ng-show="loading"><loader></loader></li>
+      <conversation-user
+      ng-repeat="conversation in listCtrl.conversations"
+      ng-click="listCtrl.converse(conversation)"
+      conversation="conversation"></conversation-user>
+      </li>
+      <li class="no-results" ng-if="listCtrl.conversations.length == 0 && !loading">You have no conversations</li>
+    </ul>
+  </div>
+</div>

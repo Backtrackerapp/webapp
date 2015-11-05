@@ -1,0 +1,19 @@
+<form class="report-highlight">
+  
+  <p>Why are you reporting this highlight?</p>  
+
+  <input type="radio" id="reportin" ng-model="reportCtrl.reason" value="Inappropriate or offensive">
+  <label for="reportin">Inappropriate or Offensive</label>
+  <input type="radio" id="reportfa" ng-model="reportCtrl.reason" value="False information">
+  <label for="reportfa">False Information</label>
+  <input type="radio" id="reportot" ng-model="reportCtrl.reason" value="Other">
+  <label for="reportot">Other&hellip;</label>
+
+  <textarea ng-model="reportCtrl.text" placeholder="Please explain why here&hellip;"></textarea>
+  <p class="error" ng-show="reportCtrl.textError">{{ reportCtrl.textError }}</p>
+
+  <div class="actions">
+    <a class="btn btn-darkBlue" ng-click="params.close()">Cancel</a>
+    <a class="btn btn-action" ng-click="reportCtrl.postReport(params.id)">Submit</a>
+  </div>
+</form>

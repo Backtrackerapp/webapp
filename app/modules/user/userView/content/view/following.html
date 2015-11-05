@@ -1,0 +1,5 @@
+<ul class="table-view">
+  <li class="table-loader" ng-show="contentCtrl.followingLoading"><loader></loader></li>
+  <list-user ng-repeat="user in user.following | orderBy: 'last_name'" user="user"></list-user>
+  <li class="no-results" ng-if="user.following.length == 0">This user isn't following anybody</li>
+</ul>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>BackTracker</title>
+    <base href="/" target="_blank" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/mapbox.js/mapbox.css" />
+    <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.css" />
+    <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.date.css" />
+    <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.time.css" />
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css" />
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css" />
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.time.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
+    <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/mapglyphs/mapglyphs.css">
+    <!-- endbuild -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  </head>
+  <body ng-app="backtrackerApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <nav-bar></nav-bar>
+
+    <div ui-view>
+
+    </div>
+
+
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-61849933-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-mapbox/dist/angular-mapbox.js"></script>
+    <script src="bower_components/mapbox.js/mapbox.js"></script>
+    <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/angular-simple-format/lib/angular_simple_format.js"></script>
+    <script src="bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+    <script src="bower_components/angular-native-picker/build/angular-datepicker.js"></script>
+    <script src="bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
+    <script src="bower_components/pickadate/lib/picker.js"></script>
+    <script src="bower_components/pickadate/lib/picker.date.js"></script>
+    <script src="bower_components/pickadate/lib/picker.time.js"></script>
+    <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="config.js"></script>
+        <script src="app.js"></script>
+
+        <script src="modules/utils/main.js"></script>
+            <script src="modules/utils/services/CurrentUserService.js"></script>
+            <script src="modules/utils/services/Helper.js"></script>
+            <script src="modules/utils/services/Cache.js"></script>
+            <script src="modules/utils/directives/HTMLInsert.js"></script>
+            <script src="modules/utils/directives/imageDropper/imageDropper.js"></script>
+            <script src="modules/utils/directives/step.js"></script>
+            <script src="modules/utils/directives/mapLoader/mapLoader.js"></script>
+            <script src="modules/utils/directives/autoFocus.js"></script>
+            <script src="modules/utils/directives/loader.js"></script>
+            <script src="modules/utils/directives/mainLoader/mainLoader.js"></script>
+
+        <script src="modules/nav/main.js"></script>
+            <script src="modules/nav/navBar/navBarController.js"></script>
+            <script src="modules/nav/segmentBar/segmentedController.js"></script>
+            <script src="modules/nav/actionButton/actionButtonController.js"></script>
+
+        <script src="modules/modal/main.js"></script>
+            <script src="modules/modal/modalController.js"></script>
+
+        <script src="modules/slider/main.js"></script>
+            <script src="modules/slider/sliderController.js"></script>
+
+        <script src="modules/states/main.js"></script>
+          <script src="modules/states/map/journey/currentJourney.js"></script>
+          <script src="modules/states/map/journey/journey.js"></script>
+          <script src="modules/states/map/highlights/highlights.js"></script>
+          <script src="modules/states/map/friends/friends.js"></script>
+          <script src="modules/states/map/user/user.js"></script>
+          <script src="modules/states/articles/articles.js"></script>
+          <script src="modules/states/articles/article/article.js"></script>
+
+        <script src="modules/gallery/main.js"></script>
+          <script src="modules/gallery/resource.js"></script>
+            <script src="modules/gallery/galleryView/GalleryViewController.js"></script>
+            <script src="modules/gallery/galleryThumb/GalleryThumbController.js"></script>
+
+        <script src="modules/articles/main.js"></script>
+          <script src="modules/articles/resource.js"></script>
+            <script src="modules/articles/articlesList/articlesListController.js"></script>
+            <script src="modules/articles/articleThumb/articleThumbController.js"></script>
+            <script src="modules/articles/viewArticle/viewArticleController.js"></script>
+
+        <script src="modules/user/main.js"></script>
+          <script src="modules/user/resource.js"></script>
+            <script src="modules/user/userView/userViewController.js"></script>
+              <script src="modules/user/userView/head/headController.js"></script>
+              <script src="modules/user/userView/content/contentController.js"></script>
+            <script src="modules/user/userReport/userReportController.js"></script>
+            <script src="modules/user/userBlock/userBlockController.js"></script>
+            <script src="modules/user/addFriends/addFriendsController.js"></script>
+            <script src="modules/user/listUser/listUser.js"></script>
+
+        <script src="modules/highlight/main.js"></script>
+          <script src="modules/highlight/resource.js"></script>
+            <script src="modules/highlight/highlightReport/highlightReportController.js"></script>
+            <script src="modules/highlight/newHighlight/newHighlightController.js"></script>
+            <script src="modules/highlight/viewHighlight/viewHighlightController.js"></script>
+
+        <script src="modules/journey/main.js"></script>
+          <script src="modules/journey/resource.js"></script>
+            <script src="modules/journey/post/editPost/editPostController.js"></script>
+            <script src="modules/journey/post/newPost/newPostController.js"></script>
+            <script src="modules/journey/post/viewPost/viewPostController.js"></script>
+            <script src="modules/journey/listJourney.js"></script>
+
+        <script src="modules/conversation/main.js"></script>
+          <script src="modules/conversation/resource.js"></script>
+          <script src="modules/conversation/conversationService.js"></script>
+            <script src="modules/conversation/conversationList/conversationListController.js"></script>
+            <script src="modules/conversation/conversationTabs/conversationTabsController.js"></script>
+            <script src="modules/conversation/conversationTab/conversationTabController.js"></script>
+            <script src="modules/conversation/message/message.js"></script>
+
+        <script src="modules/map/main.js"></script>
+          <script src="modules/map/mapService.js"></script>
+            <script src="modules/map/map/mapController.js"></script>
+            <script src="modules/map/marker/marker.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

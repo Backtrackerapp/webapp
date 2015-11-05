@@ -1,0 +1,6 @@
+<li>
+  <div class="unread" ng-show="conversation.has_unread"></div>
+  <img ng-src="http://graph.facebook.com/{{conversation.other.fbid}}/picture?type=square&width=40&height=40" alt="" />
+  <h2>{{conversation.other.first_name}} {{conversation.other.last_name}}</h2>
+  <h3>{{conversation.last_message}}</h3>
+</li>

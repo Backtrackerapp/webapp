@@ -1,0 +1,52 @@
+<div class="header">
+  <ul class="navbar left" role="navigation">
+    <li class="logo"><a href="#/"><img src="/images/brushlogo.png" alt="" /></a></li>
+    <li class="map">
+      <a href="#/"><span>Map</span></a>
+    </li>
+    <li class="blogs">
+      <a ng-click="navCtrl.blogsMenu()"><span>Articles</span></a>
+    </li>
+    <li class="blogs">
+      <a href="#/gallery"><span>Gallery</span></a>
+    </li>
+  </ul>
+  <ul class="navbar right">
+    <li class="user-details" ng-if="navCtrl.user">
+      <div class="user-open" ng-click="navCtrl.showProfile()">
+        <img ng-src="http://graph.facebook.com/{{navCtrl.user.fbid}}/picture?type=square&width=40&height=40" alt="" />
+        <span>{{ navCtrl.user.first_name }} {{ navCtrl.user.last_name}}</span>
+      </div>
+      <div class="user-view user-view-profile" ng-class="{shown: navCtrl.profileShown}">
+        <user-content user='navCtrl.user' ng-show='navCtrl.profileShown'></user-content>
+      </div>
+    </li>
+    <li class="header-icon-li">
+      <a href="#/" class="header-icon home"></a>
+    </li>
+    <li class="header-icon-li">
+      <a ng-click="navCtrl.showSettings()" class="header-icon settings" ng-class="{active: navCtrl.settingsShown}"></a>
+      <div class="user-view-settings" ng-class="{shown: navCtrl.settingsShown}">
+        <h3>Privacy</h3>
+        <input type="radio" id="privacyopen" ng-model="navCtrl.privacy" ng-change="navCtrl.checkPrivacy()" value="green">
+        <label for="privacyopen"><span class="green">Open</span> - Anyone can see your journeys and follow you.</label>
+        <input type="radio" id="privacymedium" ng-model="navCtrl.privacy" ng-change="navCtrl.checkPrivacy()" value="orange">
+        <label for="privacymedium"><span class="orange">Medium</span> - You must approve follows</label>
+        <input type="radio" id="privacyprivate" ng-model="navCtrl.privacy" ng-change="navCtrl.checkPrivacy()" value="red">
+        <label for="privacyprivate"><span class="red">Private</span> - You don't show up anywhere on BackTracker and must share your journeys to let people see them.</label>
+        <a ng-click="navCtrl.saveSettings()" ng-class="{disabled: navCtrl.settingsButtonDisabled}" class="btn">Save privacy settings</a>
+        <a class="btn btn-logout">Log out</a>
+      </div>
+    </li>
+    <li class="header-icon-li">
+      <a href="http://www.backtrackerapp.com/info.html" target="_blank" class="header-icon help"></a>
+    </li>
+  </ul>
+</div>
+<div class="blog-menu">
+  <ul>
+    <li ng-repeat="region in navCtrl.regions" class="blog-box" ng-click="navCtrl.go(region)">
+      <span>{{region}}</span>
+    </li>
+  </ul>
+</div>

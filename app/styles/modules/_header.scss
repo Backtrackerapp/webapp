@@ -1,0 +1,277 @@
+.header {
+  font-family: $chalkFont;
+  .blogs, .blogs-open, .map {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 200;
+    a {
+      width: 100%;
+      height: 100%;
+      padding: 8px 10px;
+      span {
+        color: white;
+      }
+      text-decoration: none;
+      position: relative;
+      top: 8px;
+    }
+    min-height: 60px;
+    &:hover {
+      background-color: darken($thinBlue, 3%);
+      cursor: pointer;
+    }
+  }
+  .blogs-open {
+    cursor: pointer;
+    background-image: url('/images/whitedownarrow.png');
+    background-repeat: no-repeat;
+    background-position: 50% 54%;
+    background-size: 15px 7px;
+  }
+  background-color: $thinBlue;
+  height: 60px;
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  @extend .shadowed;
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+    z-index: 2;
+  }
+  li {
+    float: left;
+    display: inline-block;
+    padding: 8px 12px;
+    &.logo {
+      padding: 8px 30px;
+    }
+  }
+  img {
+    height: 42px;
+  }
+  .user-details {
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;
+    padding: 0;
+    position: relative;
+    margin-right: 16px;
+    max-height: 60px;
+    .user-open {
+      padding: 8px 50px 8px 20px;
+      min-width: 152px;
+      max-height: 60px;
+      &:hover {
+        background-color: darken($thinBlue, 3%);
+      }
+      background-image: url('/images/whitedownarrow.png');
+      background-repeat: no-repeat;
+      background-position: 90% 54%;
+      background-size: 15px 7px;
+      cursor: pointer;
+      > span {
+        position: relative;
+        top: -13px;
+      }
+      > img {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        border: 2px solid #fff;
+        margin-top: 8px;
+        margin-bottom: 4px;
+        margin-right: 7px;
+      }
+    }
+
+
+
+  }
+  .user-view-profile {
+    top: 60px;
+    left: 0;
+    z-index: 0;
+    .user-view-content {
+      border-top: none;
+    }
+    .tabs .active {
+      background: $orange !important;
+    }
+  }
+  .user-view-settings {
+    background: $darkBlue;
+    position: absolute;
+    top: 70px;
+    border-radius: 6px;
+    right: 30px;
+    width: 340px;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    &:before {
+      content: ' ';
+      @include arrow(top, $darkBlue, 15px);
+      position: absolute;
+      top: -15px;
+      right: 35px;
+    }
+    @include transition(opacity .3s);
+    h3 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .btn {
+      background: #fff;
+      color: $darkBlue;
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      @include transition(opacity .3s);
+      &.disabled {
+        opacity: 0.1;
+        cursor: default;
+      }
+    }
+    .btn-logout {
+      background: darken($darkBlue, 5%);
+      color: #fff;
+      margin-top: 20px;
+    }
+    input[type="radio"] {
+      opacity: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      float: left;
+      & + label {
+        padding: 8px 0px 8px 32px;
+        cursor: pointer;
+        display: block;
+        background-image: url('/images/whiteradio1.png');
+        background-repeat: no-repeat;
+        background-position: 0 9px;
+        background-size: 20px 20px;
+        line-height: 1.4;
+        color: #fff;
+        span {
+          font-weight: 500;
+        }
+        span.red {
+          color: $errorRed;
+        }
+        span.green {
+          color: #9edc4d;
+        }
+        span.orange {
+          color: #ffa175;
+        }
+      }
+      &:checked + label {
+        background-image: url('/images/whiteradio2.png');
+      }
+    }
+    &.shown {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  .header-icon-li {
+    padding: 0;
+  }
+  .header-icon {
+    width: 44px;
+    height: 44px;
+    display: block;
+    border-radius: 44px;
+    margin: 8px 2px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 26px 22px;
+    cursor: pointer;
+    &:hover {
+      background-color: #e46639;
+    }
+    &.active {
+      background-color: #e46639;
+    }
+    &.home {
+      background-image: url('/images/header-icons/home.png');
+    }
+    &.settings {
+      background-image: url('/images/header-icons/settings.png');
+    }
+    &.help {
+      background-image: url('/images/header-icons/help.png');
+      margin-right: 10px;
+    }
+  }
+}
+.header::before{
+  content: "";
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  -webkit-filter: blur(5px);
+}
+
+.blog-menu {
+  position: fixed;
+  top: -80px;
+  z-index: 3;
+  left: 120px;
+  font-family: $chalkFont;
+  .blog-box {
+    color: white;
+    width: 246px;
+    height: 78px;
+    text-align: center;
+    padding-top: 30px;
+    &:hover{
+      color: $darkBlue;
+      cursor: pointer;
+    }
+    span {
+      font-size: 23px;
+      font-weight: 200;
+    }
+  }
+}
+.blog-box::before {
+  content: "";
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: rgba(200,200,200,0.7);
+  -webkit-filter: blur(5px);
+  overflow: hidden;
+}
+
+//codrops styling for dropdown
+.blog-menu ul {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.blog-menu ul li {
+	position: absolute;
+	width: 100%;
+  top: 0;
+}
+
+.cd-active.blog-menu ul li {
+	// box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}

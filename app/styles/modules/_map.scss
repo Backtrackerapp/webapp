@@ -1,0 +1,182 @@
+.angular-mapbox-map {
+  position: absolute;
+  background-color: $darkBlue;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100% !important;
+  height: auto !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.leaflet-top.leaflet-left {
+  top: 70px !important;  
+}
+
+.myPost-icon {
+  background-image: url('/images/markers/my-post.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.post-icon {
+  background-image: url('/images/markers/post.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.ghost-icon {
+  background-image: url('/images/markers/ghost-post.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-eat-icon {
+  background-image: url('/images/markers/highlighteat.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-drink-icon {
+  background-image: url('/images/markers/highlightdrink.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-gem-icon {
+  background-image: url('/images/markers/highlightgem.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-sleep-icon {
+  background-image: url('/images/markers/highlightsleep.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-default-icon {
+  background-image: url('/images/markers/highlightdefault.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.clustered-icon {
+  background-image: url('/images/markers/highlightdefault.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  span {
+    position: absolute;
+    right: -3px;
+    top: -4px;
+    background: $orange;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+  }
+}
+
+.friend-icon {
+  background-image: url('/images/markers/highlightdefault.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  img {
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 9px;
+    left: 9px;
+  }
+}
+
+.leaflet-control-attribution {
+  float: left !important;
+}
+
+.leaflet-bottom.leaflet-right {
+  left: 0;
+  right: inherit;
+}
+
+.leaflet-control-zoom {
+  border: none;
+  background: transparent;
+  a {
+    @extend .shadowed;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    text-indent: 0;
+    color: $darkBlue;
+    padding-top: 8px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 100;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: none;
+    &:hover {
+      opacity: 1;
+      border: none;
+      background: #fff;
+      border-radius: 4px !important;
+    }
+    &.leaflet-control-zoom-out {
+      font-size: 50px;
+    }
+  }
+}
+
+.leaflet-top.leaflet-left {
+  right: 30px;
+  top: 30px;
+  left: inherit;
+}
+
+.leaflet-popup-close-button {
+  display: none;
+}
+
+.leaflet-popup-tip-container {
+  width: 51px;
+  height: 14px;
+  .leaflet-popup-tip {
+    width: 51px;
+    height: 14px;
+    background-image: url('/images/pointer.png');
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    border: none !important;
+    margin: 0 auto;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  // min-width: 300px;
+  @extend .shadowed;
+  .leaflet-popup-content {
+    padding: 5px 20px 5px 20px;
+  }
+  h1 {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-size: 13px;
+    color: $blue;
+    &.mine {
+      color: $orange;
+    }
+    text-align: center;
+    margin-bottom: 0;
+    margin-bottom: 6px;
+  }
+}

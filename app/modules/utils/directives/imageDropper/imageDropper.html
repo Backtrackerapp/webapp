@@ -1,0 +1,9 @@
+<div ng-file-drop ng-file-select ng-file-change="fileCtrl.fileChanged($files)"
+class="file-dropper" 
+ng-class="{hasImage: fileCtrl.postImage, imageAlready: current}"  
+ng-accept="'.jpg,.png,.jpeg'"
+ng-style="{'background-image': 'url(' + current.iphone + ')'}">
+	<span ng-hide="fileCtrl.postImage">Drag here or click to {{current?'replace':'browse'}}</span>
+	<span ng-show="fileCtrl.postImage">Image chosen, drag here or click to replace</span>
+</div>
+<p class="error" ng-show="fileCtrl.postImageError">{{ fileCtrl.postImageError }}</p>

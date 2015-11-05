@@ -1,0 +1,11 @@
+<my-marker
+  ng-repeat="friend in friendsCtrl.friends"
+  user="{{friend}}"
+  marker-type="friend"
+  marker-width="48"
+  marker-height="53"
+  marker-offset-left="24"
+  marker-offset-top="52"
+  fbid="{{friend.fbid}}"
+  lat="{{friend.latitude}}"
+  lng="{{friend.longitude}}"/>

@@ -1,0 +1,5 @@
+<ul class="table-view">
+  <li class="table-loader" ng-show="contentCtrl.followersLoading"><loader></loader></li>
+  <list-user ng-repeat="user in user.followers | orderBy: 'last_name'" user="user"></list-user>
+  <li class="no-results" ng-if="user.followers.length == 0">This user has no followers</li>
+</ul>

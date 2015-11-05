@@ -1,0 +1,25 @@
+<!-- Post view for slider Panel -->
+
+<div class="selected-post-view" ng-class="{mine: post.can_edit, hasImage: post.cover_image}">
+  <a class="more-icon" ng-click="postCtrl.togglePopup()"></a>
+  <ul class="popup" ng-show="postCtrl.popupShown && display">
+    <li ng-if="post.can_edit" ng-click="postCtrl.editPost(post)">Edit Post</li>
+    <li ng-if="post.can_edit" class="destructive" ng-click="postCtrl.deletePost(post)">Delete Post</li>
+    <li ng-click="postCtrl.shareFacebook(post)">Post Journey to Facebook</li>
+    <li ng-click="postCtrl.shareTwitter(post)">Tweet this Journey</li>
+  </ul>
+  <a ng-click="postCtrl.close()" class="close"></a>
+  <div class="post-image" ng-show="post.cover_image" ng-style="{'background-image': 'url(' + post.cover_image.iphone + ')'}">
+
+  </div>
+  <i ng-show="post.country_code && !post.cover_image" class="mg map-{{post.country_code | lowercase}} mg-5x"></i>
+  <h1>{{ post.name }}</h1>
+  <h2>{{Helper.toJsDate(post.date) | date:"dd MMM yyyy" }}</h2>
+  <p ng-bind-html="post.text|simpleFormat">
+
+  </p>
+  <div class="bottom-navigation">
+    <div class="arrow arrow-prev" ng-click="postCtrl.prev()" ng-class="{disabled: postCtrl.prevDisabled}"></div>
+    <div class="arrow arrow-next" ng-click="postCtrl.next()" ng-class="{disabled: postCtrl.nextDisabled}"></div>
+  </div>
+</div>
