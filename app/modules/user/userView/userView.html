@@ -1,5 +1,5 @@
 <div class="user-view" ng-class="{shown: userCtrl.shown}">
   <user-head user='userCtrl.user' content='userCtrl.toggleContent'></user-head>
 
-  <user-content user='userCtrl.user' ng-show='userCtrl.contentShown'></user-content>
+  <user-content user='userCtrl.user' ng-show='userCtrl.contentShown' buttons="userCtrl.shown"></user-content>
 </div>

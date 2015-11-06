@@ -15,8 +15,6 @@
       'conversation',
       'map',
       'states',
-      'articles',
-      'gallery',
 
     //Bower_Components
       'ngCookies',
@@ -29,7 +27,8 @@
       'luegg.directives',
       'ngAutocomplete',
       '720kb.datepicker',
-      'angularFileUpload'
+      'angularFileUpload',
+      'ngUnderscore'
     ]);
 
   app.config(function($compileProvider, FacebookProvider){
@@ -41,14 +40,7 @@
   });
 
   //This will have to look for a accesstoken instead first
-	app.run(function(Facebook, CurrentUser){
-		Facebook.getLoginStatus(function(response) {
-	      if(response.status === 'connected') {
-	        CurrentUser.getUser(response.authResponse.accessToken, 'loggedIn');
-	      } else {
-	        window.location = "http://www.backtrackerapp.com";
-	      }
-    	});
+	app.run(function(){
 	});
 
 })();

@@ -1,33 +1,5 @@
 .header {
   font-family: $chalkFont;
-  .blogs, .blogs-open, .map {
-    text-align: center;
-    font-size: 25px;
-    font-weight: 200;
-    a {
-      width: 100%;
-      height: 100%;
-      padding: 8px 10px;
-      span {
-        color: white;
-      }
-      text-decoration: none;
-      position: relative;
-      top: 8px;
-    }
-    min-height: 60px;
-    &:hover {
-      background-color: darken($thinBlue, 3%);
-      cursor: pointer;
-    }
-  }
-  .blogs-open {
-    cursor: pointer;
-    background-image: url('/images/whitedownarrow.png');
-    background-repeat: no-repeat;
-    background-position: 50% 54%;
-    background-size: 15px 7px;
-  }
   background-color: $thinBlue;
   height: 60px;
   position: absolute;
@@ -222,56 +194,4 @@
   z-index: -1;
 
   -webkit-filter: blur(5px);
-}
-
-.blog-menu {
-  position: fixed;
-  top: -80px;
-  z-index: 3;
-  left: 120px;
-  font-family: $chalkFont;
-  .blog-box {
-    color: white;
-    width: 246px;
-    height: 78px;
-    text-align: center;
-    padding-top: 30px;
-    &:hover{
-      color: $darkBlue;
-      cursor: pointer;
-    }
-    span {
-      font-size: 23px;
-      font-weight: 200;
-    }
-  }
-}
-.blog-box::before {
-  content: "";
-  position:absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  background-color: rgba(200,200,200,0.7);
-  -webkit-filter: blur(5px);
-  overflow: hidden;
-}
-
-//codrops styling for dropdown
-.blog-menu ul {
-	position: absolute;
-	top: 0px;
-	width: 100%;
-}
-
-.blog-menu ul li {
-	position: absolute;
-	width: 100%;
-  top: 0;
-}
-
-.cd-active.blog-menu ul li {
-	// box-shadow: 0 5px 5px rgba(0,0,0,0.5);
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('map')
-  .service('Map', function ($rootScope, mapboxService, $timeout, debug) {
+  .service('Map', function ($rootScope, mapboxService, $timeout, debug, underscore) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     this.bounds = null;
     this.featureLayer = null;
@@ -25,12 +25,12 @@ angular.module('map')
           stroke: stroke
         }
       });
-      _.each(_.where(journey.posts, {ghost: false}), function(post) {
+      underscore.each(underscore.where(journey.posts, {ghost: false}), function(post) {
         line.features[0].geometry.coordinates.push([post.longitude, post.latitude])
       })
-      if(_.findWhere(journey.posts, {ghost: true})) {
-        var ghost = _.findWhere(journey.posts, {ghost: true});
-        var link = _.findWhere(journey.posts, {ghost: false});
+      if(underscore.findWhere(journey.posts, {ghost: true})) {
+        var ghost = underscore.findWhere(journey.posts, {ghost: true});
+        var link = underscore.findWhere(journey.posts, {ghost: false});
         line.features.push({
           type: "Feature",
           geometry: {

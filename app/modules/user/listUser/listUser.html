@@ -3,8 +3,10 @@
   <h2>{{ user.first_name }} {{ user.last_name }}</h2>
   <h3>{{user.current_journey_name}}</h3>
   <div class="following_button">
-    <a href="" ng-click="userCtrl.follow(user)" class="follow" ng-if="user.following_status == 'not_following'"></a>
-    <a href="" ng-click="userCtrl.unfollow(user)" class="unfollow" ng-if="user.following_status == 'following'"></a>
-    <a href="" class="waiting" ng-if="user.following_status == 'waiting'"></a>
+    <a href="" ng-click="userCtrl.follow(user)" class="follow" ng-if="(user.following_status == 'not_following' && buttons) && !userCtrl.is_me"></a>
+    <a href="" ng-click="userCtrl.unfollow(user)" class="unfollow" ng-if="user.following_status == 'following' && buttons"></a>
+    <a href="" class="waiting" ng-if="user.following_status == 'waiting' && buttons"></a>
+
+    <a href="" ng-click="userCtrl.accept(user)" class="waiting" ng-if="user.follower_status == 'waiting'"></a>
   </div>
 </li>

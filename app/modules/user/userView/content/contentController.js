@@ -17,7 +17,7 @@ angular.module('user').controller('contentController', function($scope, User, Cu
     if(name == "followers") {
       if(typeof $scope.user.followers === "undefined") {
         this.followersLoading = true;
-        User.followers({id: $scope.user.id, access_token: CurrentUser.accessToken}, function(users) {
+        User.followers({id: $scope.user.id}, function(users) {
           this.followersLoading = false;
           $scope.user.followers = users;
         }.bind(this));
@@ -26,7 +26,7 @@ angular.module('user').controller('contentController', function($scope, User, Cu
     if(name == "following") {
       if(typeof $scope.user.following === "undefined") {
         this.followingLoading = true;
-        User.following({id: $scope.user.id, access_token: CurrentUser.accessToken}, function(users) {
+        User.following({id: $scope.user.id}, function(users) {
           this.followingLoading = false;
           $scope.user.following = users;
         }.bind(this));

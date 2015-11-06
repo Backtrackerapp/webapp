@@ -67,7 +67,6 @@
     <script src="bower_components/angular-mapbox/dist/angular-mapbox.js"></script>
     <script src="bower_components/mapbox.js/mapbox.js"></script>
     <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-simple-format/lib/angular_simple_format.js"></script>
     <script src="bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
@@ -79,6 +78,7 @@
     <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
+    <script src="bower_components/ng-underscore/build/ng-underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -87,9 +87,15 @@
         <script src="app.js"></script>
 
         <script src="modules/utils/main.js"></script>
-            <script src="modules/utils/services/CurrentUserService.js"></script>
+            <script src="modules/utils/services/Http.js"></script>
+            <script src="modules/utils/services/User.js"></script>
+            <script src="modules/utils/services/Highlight.js"></script>
+            <script src="modules/utils/services/Journey.js"></script>
+            <script src="modules/utils/services/Conversation.js"></script>
+            <script src="modules/utils/services/CurrentUser.js"></script>
             <script src="modules/utils/services/Helper.js"></script>
             <script src="modules/utils/services/Cache.js"></script>
+            <script src="modules/utils/services/Auth.js"></script>
             <script src="modules/utils/directives/HTMLInsert.js"></script>
             <script src="modules/utils/directives/imageDropper/imageDropper.js"></script>
             <script src="modules/utils/directives/step.js"></script>
@@ -115,22 +121,8 @@
           <script src="modules/states/map/highlights/highlights.js"></script>
           <script src="modules/states/map/friends/friends.js"></script>
           <script src="modules/states/map/user/user.js"></script>
-          <script src="modules/states/articles/articles.js"></script>
-          <script src="modules/states/articles/article/article.js"></script>
-
-        <script src="modules/gallery/main.js"></script>
-          <script src="modules/gallery/resource.js"></script>
-            <script src="modules/gallery/galleryView/GalleryViewController.js"></script>
-            <script src="modules/gallery/galleryThumb/GalleryThumbController.js"></script>
-
-        <script src="modules/articles/main.js"></script>
-          <script src="modules/articles/resource.js"></script>
-            <script src="modules/articles/articlesList/articlesListController.js"></script>
-            <script src="modules/articles/articleThumb/articleThumbController.js"></script>
-            <script src="modules/articles/viewArticle/viewArticleController.js"></script>
 
         <script src="modules/user/main.js"></script>
-          <script src="modules/user/resource.js"></script>
             <script src="modules/user/userView/userViewController.js"></script>
               <script src="modules/user/userView/head/headController.js"></script>
               <script src="modules/user/userView/content/contentController.js"></script>
@@ -140,20 +132,17 @@
             <script src="modules/user/listUser/listUser.js"></script>
 
         <script src="modules/highlight/main.js"></script>
-          <script src="modules/highlight/resource.js"></script>
             <script src="modules/highlight/highlightReport/highlightReportController.js"></script>
             <script src="modules/highlight/newHighlight/newHighlightController.js"></script>
             <script src="modules/highlight/viewHighlight/viewHighlightController.js"></script>
 
         <script src="modules/journey/main.js"></script>
-          <script src="modules/journey/resource.js"></script>
             <script src="modules/journey/post/editPost/editPostController.js"></script>
             <script src="modules/journey/post/newPost/newPostController.js"></script>
             <script src="modules/journey/post/viewPost/viewPostController.js"></script>
             <script src="modules/journey/listJourney.js"></script>
 
         <script src="modules/conversation/main.js"></script>
-          <script src="modules/conversation/resource.js"></script>
           <script src="modules/conversation/conversationService.js"></script>
             <script src="modules/conversation/conversationList/conversationListController.js"></script>
             <script src="modules/conversation/conversationTabs/conversationTabsController.js"></script>

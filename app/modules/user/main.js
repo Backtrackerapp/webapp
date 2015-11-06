@@ -20,7 +20,8 @@
       controllerAs: 'contentCtrl',
   		templateUrl: 'modules/user/userView/content/content.html',
   		scope: {
-  			user: "="
+  			user: "=",
+			buttons: "="
   		}
   	}
   });

@@ -30,7 +30,6 @@ module.exports = function(config) {
       'bower_components/angular-mapbox/dist/angular-mapbox.js',
       'bower_components/mapbox.js/mapbox.js',
       'bower_components/angular-facebook/lib/angular-facebook.js',
-      'bower_components/underscore/underscore.js',
       'bower_components/angular-simple-format/lib/angular_simple_format.js',
       'bower_components/leaflet.markercluster/dist/leaflet.markercluster.js',
       'bower_components/angular-scroll-glue/src/scrollglue.js',
@@ -42,6 +41,7 @@ module.exports = function(config) {
       'bower_components/angularjs-datepicker/dist/angular-datepicker.min.js',
       'bower_components/ng-file-upload/angular-file-upload.js',
       'bower_components/ng-file-upload-shim/angular-file-upload-shim.js',
+      'bower_components/ng-underscore/build/ng-underscore.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
