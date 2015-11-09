@@ -1,6 +1,6 @@
 angular.module('config', [])
 
-.constant('apiUrl', '//api.backtrackerapp.com')
+.constant('apiUrl', '//backtrackerdev.herokuapp.com')
 
 .constant('debug', true)
 

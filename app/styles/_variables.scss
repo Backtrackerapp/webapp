@@ -1,14 +1,15 @@
 $orange: #f06e40;
 $darkBlue: #114E6D;
-$thinBlue: rgba(17, 78, 109, 0.7);
+$thinBlue: rgba(17, 78, 109, 0.9);
 $blue: #63C9DD;
 $yellow: #F7BD10;
 $hairline: #DDE9EB;
 $bodyText: #59869E;
 $blueWash: #DDE9EB;
 $errorRed: #D75564;
+$grey: #858585;
 
-$chalkFont: 'Cabin Sketch', cursive;
+$lato: 'Lato', sans-serif;
 
 .shadowed {
   @include box-shadow(0 1px 2px rgba(17,78,109,0.15));

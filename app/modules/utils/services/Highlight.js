@@ -3,8 +3,13 @@
 angular.module('utils')
 .service('Highlight', function(Http, apiUrl) {
 
+    this.show = function(params, success, error){
+        var url = apiUrl+"/api/v2/highlights/"+params.id
+        return Http.get(url, params, success, error);
+    }
+
     this.within = function(params, success, error) {
-        var url = apiUrl+"/api/highlights/within";
+        var url = apiUrl+"/api/v3/highlights/within";
         return Http.get(url, params, success, error);
     }
 

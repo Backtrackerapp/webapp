@@ -1,0 +1,64 @@
+<div class="navMenu" ng-class="{shown: show, minimal: (hover || show)}" ng-mouseenter="show = true">
+    <ul>
+        <li>
+            <a class="journey colored" href="#/">
+                <div class="icon"><img src="images/myJourney.png" /></div>
+                My journey
+            </a>
+        </li>
+        <li>
+            <a class="highlight colored" href="#/highlights">
+                <div class="icon"><img src="images/highlights.png" /></div>
+                Highlights
+            </a>
+        </li>
+        <li>
+            <a class="best-trip colored" href="#/best-trips">
+                <div class="icon"><img src="images/bestTrips.png" /></div>
+                Best trips
+            </a>
+        </li>
+        <li>
+            <a class="nearby colored" href="#/nearby">
+                <div class="icon"><img style="height: 28px;" src="images/nearby.png" /></div>
+                Nearby
+            </a>
+        </li>
+        <li>
+            <a class="friends colored" href="#/friends">
+                <div class="icon"><img src="images/friends.png" /></div>
+                Friends
+            </a>
+        </li>
+        <li>
+            <a href="#/">
+                <div class="icon"><img style="height: 25px;" src="images/profile.png" /></div>
+                Profile
+            </a>
+        </li>
+        <li>
+            <a ng-click="navCtrl.chat()">
+                <div class="icon"><img style="height: 28px;" src="images/chatMenu.png" /></div>
+                Chat
+            </a>
+        </li>
+        <li>
+            <a href="//blogs.backtrackerapp.com">
+                <div class="icon"><img style="height: 30px;" src="images/articles.png" /></div>
+                Articles
+            </a>
+        </li>
+        <li>
+            <a href="//blogs.backtrackerapp.com/#!/gallery">
+                <div class="icon"><img style="height: 27px;" src="images/pictures.png" /></div>
+                Gallery
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <div class="icon"><img style="height: 27px;" src="images/settings.png" /></div>
+                Settings
+            </a>
+        </li>
+    </ul>
+</div>

@@ -53,7 +53,7 @@ module.exports = function (grunt) {
       },
       dev: {
         constants: {
-          apiUrl: '//api.backtrackerapp.com'
+          apiUrl: '//backtrackerdev.herokuapp.com'
         }
       },
       prod: {

@@ -1,8 +1,7 @@
 // bower:scss
 // endbower
 
-@import url(http://fonts.googleapis.com/css?family=Cabin+Sketch);
-@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300);
 
 @import "compass/css3/box-shadow";
 @import "compass/css3/transition";
@@ -23,8 +22,6 @@
 @import "modules/_actionbutton.scss";
 @import "modules/_autocomplete.scss";
 @import "modules/_datepicker.scss";
-@import "modules/_articles.scss";
-@import "modules/_gallery.scss";
 
 *, *:before, *:after {
   box-sizing: border-box;

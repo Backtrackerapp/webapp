@@ -32,4 +32,26 @@
 			scope: {}
 		};
 	});
+
+	app.directive("navMenu", function(){
+		return {
+			restrict: 'E',
+			controller: 'NavMenuController',
+			controllerAs: 'navCtrl',
+			templateUrl: 'modules/nav/navMenu/navMenu.html',
+			link: function(scope, element){
+				var menu = element.find('.navMenu');
+				var resize = function(){
+					menu.css('max-height', window.innerHeight - 60)
+				}
+				resize();
+				window.addEventListener( "resize", resize);
+
+			},
+			scope: {
+				show: "=",
+				hover: "="
+			}
+		};
+	});
 })();

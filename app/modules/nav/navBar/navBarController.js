@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('backtrackerApp')
-.controller('NavController', function ($scope, CurrentUser, User, Auth) {
+angular.module('nav')
+.controller('NavController', function ($scope, CurrentUser, User, Auth, $timeout) {
     this.settingsButtonDisabled = true;
     this.user = null;
     this.privacy = null;
@@ -10,6 +10,21 @@ angular.module('backtrackerApp')
     this.profileShown = false;
     this.followersLoading = false;
     this.followingLoading = true;
+    this.menu = false;
+    this.menuHover = false;
+
+    this.toggleMenu = function(force) {
+        if(force !== undefined)
+            this.menu = force;
+        else {
+            if(this.menu) {
+                this.menu = false;
+                this.menuHover = false;
+            } else {
+                this.menu = true;
+            }
+        }
+    }
 
     this.showProfile = function() {
         if(this.profileShown) {
@@ -52,11 +67,26 @@ angular.module('backtrackerApp')
 
     this.logout = function() {
         Auth.logout();
+    };
+
+    this.hoverMenu = function(force) {
+        if(force){
+            this.menuHover = true;
+        } else {
+            $timeout(function(){
+                this.menuHover = false;
+            }.bind(this), 50);
+        }
     }
 
-    $scope.$on('$stateChangeStart', function(){
+    this.reset = function() {
         this.profileShown = false;
-    }.bind(this));
+        this.menu = false;
+    }
+
+    $scope.$on('mapTapped', this.reset.bind(this))
+
+    $scope.$on('$stateChangeStart', this.reset.bind(this));
 
     $scope.$on('refreshUser', function() {
         User.get({
@@ -78,6 +108,7 @@ angular.module('backtrackerApp')
     $scope.$on('logout', function(){
         this.privacy = null;
         this.user = null;
+        this.reset();
     }.bind(this));
 
     $scope.$on('tabChanged', function() {

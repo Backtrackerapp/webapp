@@ -1,5 +1,6 @@
 <div class="header">
     <ul class="navbar left" role="navigation">
+        <li class="menu" ng-click="navCtrl.toggleMenu()" ng-mouseenter="navCtrl.hoverMenu(true)" ng-mouseleave="navCtrl.hoverMenu(false)"><img src="/images/burger.svg"></li>
         <li class="logo"><a href="#/"><img src="/images/brushlogo.png" alt="" /></a></li>
     </ul>
     <ul class="navbar right">
@@ -37,3 +38,5 @@
         </li>
     </ul>
 </div>
+
+<nav-menu show="navCtrl.menu" hover="navCtrl.menuHover"></nav-menu>

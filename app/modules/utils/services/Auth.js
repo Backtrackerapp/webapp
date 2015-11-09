@@ -22,7 +22,7 @@ angular.module('utils')
     };
 
     this.logout = function(params){
-        $cookies.auth = false;
+        $cookies.auth = null;
         $rootScope.$broadcast('logout');
     }
 
