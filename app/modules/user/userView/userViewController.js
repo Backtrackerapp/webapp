@@ -8,10 +8,10 @@ angular.module('user')
 
   this.showUser = function(user){
     //If we visit /journey/:id of a journey we belong to the userView should not display
-    if(CurrentUser.user && user.id == CurrentUser.user.id) {
-      this.shown = false;
-      return;
-    }
+    // if(CurrentUser.user && user.id == CurrentUser.user.id) {
+    //   this.shown = false;
+    //   return;
+    // }
     this.user = user;
     this.contentShown = false;
     this.shown = true;
@@ -55,14 +55,3 @@ angular.module('user')
   }.bind(this));
 
 });
-
-
-
-
-
-
-
-
-
-
-

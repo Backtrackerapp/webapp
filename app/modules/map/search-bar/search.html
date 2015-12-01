@@ -1,0 +1,16 @@
+<div class="searchBar" ng-class="{show: show}">
+    <div class="input" ng-class="{open: open || button_hover || input_hover}" ng-mouseover="input_hover = true" ng-mouseleave="input_hover = false">
+        <input type="text"
+            ng-model="search"
+            ng-autocomplete="results"
+            options="options"
+            placeholder="Search for location&hellip;"
+            value=""
+            details="result"
+            ng-focus="open = true"
+            ng-blur="open = false">
+    </div
+    ><div class="search-btn" ng-mouseover="button_hover = true" ng-mouseleave="delayClose()">
+        <img src="images/search.svg" />
+    </div>
+</div>

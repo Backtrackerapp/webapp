@@ -136,9 +136,11 @@ angular.module('conversation')
             if(newMessage) {
                 conversation.messages = underscore.without(conversation.messages, newMessage);
             }
-            underscore.each(data.messages.reverse(), function(message) {
-                conversation.messages.push(message);
-            });
+            if(data.messages){
+                underscore.each(data.messages.reverse(), function(message) {
+                    conversation.messages.push(message);
+                });
+            }
         });
     };
 });

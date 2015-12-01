@@ -1,0 +1,44 @@
+<div class="BestTrips" ng-show="show">
+    <div class="top-image" ng-style="{ 'background-image': top_image ? top_image : 'url(../images/best-trips.jpg)' }">
+        <div class="back-box" ng-click="back()" ng-if="selected">
+            <h1> Back </h1>
+        </div>
+        <div class="title-box">
+            <h1>{{ selected ? selected.journey.name : 'Best Trips' }}</h1>
+        </div>
+    </div>
+    <div class="trips-content">
+        <div class="trip-detail" ng-if="selected">
+            <div class="left" ng-style="{ width : youtubeUrl ? '50%' : '100%' }">
+                <h3>"{{selected.description}}"
+                    <br>
+                    <br>
+                    - {{selected.user.first_name + ' ' + selected.user.last_name}}
+                </h3>
+                <div class="detail-foot">
+                    <button ng-click="showJourney()">View Journey</button>
+                </div>
+                </div
+                ><div class="right" ng-if="youtubeUrl">
+                    <iframe width="100%" height="300" allowfullscreen
+                    src="{{youtubeUrl}}">
+                </iframe>
+            </div>
+        </div>
+        <h2 ng-if="!selected">This is a selection of our favourite travel videos and the journeys involved. Create your own journey to track your travels.</h2>
+        <div class="overflow" ng-class="mode">
+            <div class="flex-container" ng-class="mode" ng-style="{'width': width}">
+                <div class="flex-content" ng-repeat="feat in featured_journeys" ng-style="{'background-image': 'url('+feat.image.iphone+')'}" ng-class="mode">
+                    <div class="hover-content">
+                        <div class="blue"></div>
+                        <h1>{{feat.journey.name}}</h1>
+                        <h2>{{feat.user.first_name + ' ' + feat.user.last_name}}</h2>
+                        <div class="hover-foot">
+                            <button ng-click="showFeatured(feat)">Video & Journey</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

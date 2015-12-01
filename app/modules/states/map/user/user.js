@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('states')
-.controller('UserController', function ($scope, $rootScope, $stateParams, User, CurrentUser, Map, $state) {
+.controller('UserController', function ($scope, $rootScope, $stateParams, User, CurrentUser, Map, $state, Util) {
     $rootScope.$broadcast('tabChanged', {tab: 'friends'});
     $rootScope.$broadcast('hideChrome');
 
     this.user = null;
+    this.profileImage = null;
 
     this.getUser = function(){
         $rootScope.$broadcast('loading', {text: "Loading user"});
@@ -17,6 +18,7 @@ angular.module('states')
             $rootScope.$broadcast('stopLoading');
             $rootScope.$broadcast('showFullUser', {user: user});
             this.user = user;
+            this.profileImage = Util.parseProfileImage(user, 40);
             if(user.latitude) {
                 Map.center(user.latitude, user.longitude);
             }
@@ -26,13 +28,12 @@ angular.module('states')
         });
     };
 
-    if(CurrentUser.loggedIn) {
-        this.getUser();
-    } else {
-        $scope.$on('loggedIn', function() {
-            this.getUser();
-        }.bind(this));
-    }
+    this.getUser();
+    // } else {
+    //     $scope.$on('loggedIn', function() {
+    //         this.getUser();
+    //     }.bind(this));
+    // }
 
     $scope.$on('actionButtonPressed', function() {
         $rootScope.$broadcast('showModal', {

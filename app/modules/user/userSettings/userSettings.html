@@ -1,0 +1,87 @@
+<div class="userSettings">
+    <div class="images">
+        <div class="bg" ng-style="{'background-image': 'url('+cover_image+')'}"></div>
+        <div class="profile-image">
+            <img ng-src="{{profile_image}}" />
+            <image-dropper files='profile_files'></image-dropper>
+        </div>
+        <div class="cover-image">
+            <image-dropper files="cover_files"></image-dropper>
+        </div>
+    </div>
+    <div class="back" ng-click="$parent.settings = false">
+        Back
+    </div>
+    <div class="save" ng-click="save()" ng-class="{saving: saving, error: error}">
+        <svg width="21px" height="20px" viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+            <g id="Profile" stroke="none" stroke-width="1" fill-rule="evenodd" sketch:type="MSPage">
+                <g id="settings-info" sketch:type="MSArtboardGroup" transform="translate(-562.000000, -96.000000)" class="settings-icon">
+                    <g id="SAVE" sketch:type="MSLayerGroup" transform="translate(562.000000, 96.000000)">
+                        <path d="M4.41304348,11.8181818 L16.2826087,11.8181818" id="Line" stroke-width="0.5" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                        <path d="M4.41304348,13.6363636 L16.2826087,13.6363636" id="Line-Copy" stroke-width="0.5" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                        <path d="M4.41304348,15.4545455 L16.2826087,15.4545455" id="Line-Copy-2" stroke-width="0.5" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                        <path d="M4.41304348,17.2727273 L16.2826087,17.2727273" id="Line-Copy-3" stroke-width="0.5" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                        <rect id="Rectangle-61" sketch:type="MSShapeGroup" x="14" y="3.28358209" width="1.2173913" height="4.17910448"></rect>
+                        <path d="M18.1960272,0 L0.998746091,0 C0.438614845,0 0,0.444045377 0,0.99180311 L0,19.0081969 C0,19.5446944 0.447153856,20 0.998746091,20 L20.0012539,20 C20.5613852,20 21,19.5559546 21,19.0081969 L21,2.74688901 L20.992475,2.7964478 L18.1960272,1.01448797e-15 Z M3.04347826,3.6846201 C3.04347826,3.13341068 3.49670684,2.68656716 4.04759308,2.68656716 L16.6480591,2.68656716 C17.2026164,2.68656716 17.6521739,3.1262733 17.6521739,3.6846201 L17.6521739,7.06164856 C17.6521739,7.61285797 17.1989453,8.05970149 16.6480591,8.05970149 L4.04759308,8.05970149 C3.49303578,8.05970149 3.04347826,7.61999536 3.04347826,7.06164856 L3.04347826,3.6846201 Z M3.04347826,10.7462687 L17.6521739,10.7462687 L17.6521739,18.5074627 L3.04347826,18.5074627 L3.04347826,10.7462687 Z" id="Rectangle-59" sketch:type="MSShapeGroup"></path>
+                    </g>
+                </g>
+            </g>
+        </svg> Save
+    </div>
+    <div class="errors" ng-if="error">
+        <div class="content">
+            <h1>Oops something went wrong</h1>
+            <p>{{errorText}}</p>
+        </div>
+        <div class="foot">
+            <button ng-click="$parent.error = false">Close</button>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="info" ng-class="{active: tab === 'info'}" ng-click="tab = 'info'">
+            Info
+        </div
+        ><div class="privacy" ng-class="{active: tab === 'privacy'}" ng-click="tab = 'privacy'">
+            Privacy
+        </div>
+        <div class="logout" ng-click="logout()">
+            Logout
+        </div>
+    </div>
+    <div class="form privacy" ng-show="tab === 'privacy'">
+        <h3>Change your privacy settings:</h3>
+        <div>
+            <input id="green" type="radio" ng-model="privacy" value="green">
+            <label for="green"><span class="green">Open</span></label>
+        </div>
+        <div>
+            <input id="orange" type="radio" ng-model="privacy" value="orange">
+            <label for="orange"><span class="orange">Medium</span></label>
+        </div>
+        <div>
+            <input id="red" type="radio" ng-model="privacy" value="red">
+            <label for="red"><span class="red">Private</span></label>
+        </div>
+    </div>
+    <div class="form info" ng-show="tab === 'info'">
+        <div>
+            <div><img src="images/settings-name.svg" /></div> <input ng-model="name" placeholder="{{user.first_name + ' ' + user.last_name}}">
+        </div>
+        <div></div>
+        <div>
+            <div><img src="images/settings-twitter.png" /></div> <input ng-model="twitter" placeholder="{{user.twitter || 'Twitter url'}}">
+        </div>
+        <div>
+            <div><img class="facebook" src="images/settings-facebook.png" /></div> <input ng-model="facebook" placeholder="{{user.facebook || 'Facebook url'}}">
+        </div>
+        <div>
+            <div><img src="images/settings-instagram.png" /></div> <input ng-model="instagram" placeholder="{{user.instagram || 'Instagram url'}}">
+        </div>
+        <div>
+            <div><img src="images/settings-web.png" /></div> <input ng-model="website" placeholder="{{user.webpage || 'Website url'}}">
+        </div>
+        <div class="about">
+            <div><img class="about" src="images/settings-about.svg" /></div> <textarea ng-model="about" placeholder="{{user.aboutme || 'Tell the world who you are!'}}">
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 angular.module('utils')
-.service('User', function(Http, apiUrl) {
+.service('User', function(Http, apiUrl, $upload) {
 
     this.current = function(params, success, error){
         var url = apiUrl+"/api/v2/users/current";
@@ -31,6 +31,11 @@ angular.module('utils')
         return Http.get(url, params, success, error);
     }
 
+    this.create = function(params, success, error) {
+        var url = apiUrl+"/api/v2/users"
+        return Http.post(url, params, success, error);
+    }
+
     //update needs an upload now
 
     this.accept = function(params, success, error) {
@@ -46,6 +51,10 @@ angular.module('utils')
     this.update = function(params, success, error) {
         var url = apiUrl+"/api/v2/users/current";
         return Http.patch(url, params, success, error);
+    }
+
+    this.upload = function(file, name, success, error){
+        Http.upload(apiUrl+"/api/v2/users/current", file, name, success, error);
     }
 
     this.followers = function(params, success, error) {

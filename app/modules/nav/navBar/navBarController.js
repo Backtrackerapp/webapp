@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nav')
-.controller('NavController', function ($scope, CurrentUser, User, Auth, $timeout) {
+.controller('NavController', function ($scope, CurrentUser, User, Auth, $timeout, $rootScope, $state, Util) {
     this.settingsButtonDisabled = true;
     this.user = null;
     this.privacy = null;
@@ -12,6 +12,7 @@ angular.module('nav')
     this.followingLoading = true;
     this.menu = false;
     this.menuHover = false;
+    this.profileImage = null;
 
     this.toggleMenu = function(force) {
         if(force !== undefined)
@@ -24,6 +25,10 @@ angular.module('nav')
                 this.menu = true;
             }
         }
+    }
+
+    this.openProfile = function() {
+        $state.go('map.users', {id: this.user.id});
     }
 
     this.showProfile = function() {
@@ -62,7 +67,7 @@ angular.module('nav')
     };
 
     this.login = function() {
-        Auth.loginFacebook();
+        $rootScope.$broadcast('loginPanel');
     };
 
     this.logout = function() {
@@ -93,7 +98,13 @@ angular.module('nav')
             id: CurrentUser.user.id
         }, function(user){
             this.user = user;
+            this.profileImage = Util.parseProfileImage(user);
         }.bind(this));
+    }.bind(this));
+
+    $scope.$on('refreshFullUser', function(test, user){
+        this.user = user;
+        this.profileImage = Util.parseProfileImage(user);
     }.bind(this));
 
     $scope.$on('loggedIn', function(){
@@ -101,7 +112,8 @@ angular.module('nav')
         User.get({
             id: CurrentUser.user.id
         }, function(user){
-            this.user = user;
+            this.user = CurrentUser.user = user;
+            this.profileImage = Util.parseProfileImage(user);
         }.bind(this));
     }.bind(this));
 

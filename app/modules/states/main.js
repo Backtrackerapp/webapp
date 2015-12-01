@@ -30,6 +30,7 @@
             controller: 'HighlightsController',
             controllerAs: 'highlightsCtrl'
         })
+        
         .state('map.friends', {
             url: '/friends',
             templateUrl: 'modules/states/map/friends/friends.html',
@@ -41,6 +42,11 @@
             templateUrl: 'modules/states/map/user/user.html',
             controller: 'UserController',
             controllerAs: 'userCtrl'
+        })
+
+        .state('map.besttrips', {
+            url: '/best_trips?id',
+            controller: 'BestTripsController'
         });
     });
 })();

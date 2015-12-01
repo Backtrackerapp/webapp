@@ -1,5 +1,14 @@
 angular.module('utils')
-.service('Journey', function(Http , $upload, apiUrl){
+.service('Journey', function(Http , $upload, apiUrl, Auth){
+
+    this.header = function(){
+        if(Auth.token){
+            return {
+                'X-BACKTRACKER-AUTH': Auth.token
+            }
+        }
+        return {};
+    }
 
     this.get = function(params, success, error){
         var url = apiUrl+"/api/v2/journeys/"+params.id;

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
     <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/dropzone/dist/min/dropzone.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -79,6 +80,7 @@
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
     <script src="bower_components/ng-underscore/build/ng-underscore.js"></script>
+    <script src="bower_components/dropzone/dist/min/dropzone.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -87,7 +89,9 @@
         <script src="app.js"></script>
 
         <script src="modules/utils/main.js"></script>
+            <script src="modules/utils/services/Util.js"></script>
             <script src="modules/utils/services/Http.js"></script>
+            <script src="modules/utils/services/FeaturedJourneys.js"></script>
             <script src="modules/utils/services/User.js"></script>
             <script src="modules/utils/services/Highlight.js"></script>
             <script src="modules/utils/services/Journey.js"></script>
@@ -120,13 +124,22 @@
           <script src="modules/states/map/journey/currentJourney.js"></script>
           <script src="modules/states/map/journey/journey.js"></script>
           <script src="modules/states/map/highlights/highlights.js"></script>
+          <script src="modules/states/map/highlights/highlight.js"></script>
           <script src="modules/states/map/friends/friends.js"></script>
           <script src="modules/states/map/user/user.js"></script>
+          <script src="modules/states/map/best-trips/best-trips.js"></script>
+
+        <script src="modules/best-trips/main.js"></script>
+          <script src="modules/best-trips/trips-list-panel/main.js"></script>
+          <script src="modules/best-trips/trips-list-panel/trip-thumb/main.js"></script>
 
         <script src="modules/user/main.js"></script>
+            <script src="modules/user/userProfile/userProfileController.js"></script>
+            <script src="modules/user/loginPanel/login.js"></script>
+            <script src="modules/user/userSettings/userSettingsController.js"></script>
             <script src="modules/user/userView/userViewController.js"></script>
-              <script src="modules/user/userView/head/headController.js"></script>
-              <script src="modules/user/userView/content/contentController.js"></script>
+             <script src="modules/user/userView/head/headController.js"></script>
+             <script src="modules/user/userView/content/contentController.js"></script>
             <script src="modules/user/userReport/userReportController.js"></script>
             <script src="modules/user/userBlock/userBlockController.js"></script>
             <script src="modules/user/addFriends/addFriendsController.js"></script>
@@ -152,6 +165,8 @@
 
         <script src="modules/map/main.js"></script>
           <script src="modules/map/mapService.js"></script>
+            <script src="modules/map/search-bar/searchController.js"></script>
+            <script src="modules/map/locate/locateController.js"></script>
             <script src="modules/map/map/mapController.js"></script>
             <script src="modules/map/marker/marker.js"></script>
         <!-- endbuild -->

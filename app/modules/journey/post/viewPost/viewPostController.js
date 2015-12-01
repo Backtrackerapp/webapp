@@ -1,13 +1,22 @@
 'use strict';
 
 angular.module('journey')
-.controller('ViewPostController', function($scope, $rootScope, $timeout, debug, Helper, Journey, CurrentUser, underscore){
+.controller('ViewPostController', function($scope, $rootScope, $timeout, debug, Helper, Journey, CurrentUser, underscore, Map){
 	//Models on $Scope - Post, Journey
 	this.popupShown = false;
 	this.prevDisabled = true;
 	this.nextDisabled = true;
 	this.prevPost = null;
 	this.nextPost = null;
+
+	console.log($scope.post);
+
+	$scope.$watch('post', function(newVal){
+		if(newVal){
+			Map.center(newVal.latitude, newVal.longitude, 7);
+		}
+	})
+
 
 	this.prev = function() {
 		var delay = 300;
@@ -65,21 +74,21 @@ angular.module('journey')
 		});
 	};
 
-	// this.shareFacebook = function(post) { TODO
-	// 	FB.ui({
-	// 		method: 'share',
-	// 		href: 'http://app.backtrackerapp.com/#/journey/' + post.journey_id,
-	// 	}, function(response){});
-	// 	//Make a facebook service // this might be okay actually :)
-	// }
+	this.shareFacebook = function(post) {
+		FB.ui({
+			method: 'share',
+			href: 'http://app.backtrackerapp.com/#/journey/' + post.journey_id,
+		}, function(response){});
+		//Make a facebook service // this might be okay actually :)
+	}
 
-	// this.shareTwitter = function(post) {
-	// 	var top = ($(window).height() - 575) / 2;
-	// 	var left = ($(window).width() - 400) / 2;
-	// 	var opts = 'status=1,width=575,height=400,top=' + top + ',left=' + left;
-	// 	window.open('https://twitter.com/intent/tweet?url=http://app.backtrackerapp.com/%23/journey/' + post.journey_id + '&text=Check+out+this+journey!&hashtags=backtracker', "Twitter", opts);
-	// 	//Make a twitter service
-	// }
+	this.shareTwitter = function(post) {
+		var top = ($(window).height() - 575) / 2;
+		var left = ($(window).width() - 400) / 2;
+		var opts = 'status=1,width=575,height=400,top=' + top + ',left=' + left;
+		window.open('https://twitter.com/intent/tweet?url=http://app.backtrackerapp.com/%23/journey/' + post.journey_id + '&text=Check+out+this+journey!&hashtags=backtracker', "Twitter", opts);
+		//Make a twitter service
+	}
 
 	this._initializeNavigation = function() {
 		this.prevDisabled = false;

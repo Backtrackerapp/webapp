@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>GPS</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Highlights" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="highlight-suggest-search" sketch:type="MSArtboardGroup" transform="translate(-21.000000, -244.000000)">
+            <g id="current-locatio" sketch:type="MSLayerGroup" transform="translate(14.000000, 235.000000)">
+                <g id="GPS" transform="translate(9.000000, 9.000000)" sketch:type="MSShapeGroup">
+                    <circle id="Oval-5" fill="#084C6D" cx="15" cy="17" r="10"></circle>
+                    <circle id="Oval-5-Copy" stroke="#084C6D" stroke-width="3" cx="15" cy="17" r="15"></circle>
+                    <rect id="Rectangle-122-Copy" fill="#084C6D" x="14" y="-1.97246143e-13" width="2" height="4" rx="0.200000003"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

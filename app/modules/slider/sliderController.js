@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('slider')
-.controller('SliderController', function ($scope, $timeout, Highlight) {
+.controller('SliderController', function ($scope, $timeout, Highlight, User) {
     this.shown = false;
     this.showing = '';
 
     this.post = null;
     this.journey = null;
+    this.user = null;
+
+    this.width = "800px";
 
     this.highlight = null;
 
@@ -19,12 +22,21 @@ angular.module('slider')
         this.post = post;
         this.journey = journey;
         this.showing = 'post';
+        this.width = "600px";
         this.toggle(true);
     }
 
     this.showHighlight = function(highlight){
         this.highlight = highlight;
         this.showing = 'highlight';
+        this.width = "800px";
+        this.toggle(true);
+    }
+
+    this.showUser = function(user){
+        this.user = user;
+        this.showing= 'user';
+        this.width = "600px";
         this.toggle(true);
     }
 
@@ -40,12 +52,11 @@ angular.module('slider')
     }.bind(this));
 
     $scope.$on('showHighlight', function(test, args) {
-        var nextHighlight = JSON.parse(args.highlight);
         if(this.shown) {
             this.toggle(false);
         }
         Highlight.show({
-            id: nextHighlight.id
+            id: args.id
         }, function(data){
             this.showHighlight(data);
         }.bind(this));
@@ -65,6 +76,22 @@ angular.module('slider')
         } else {
             this.showPost(nextPost, args.journey);
         }
+    }.bind(this));
+
+    $scope.$on('slideProfile', function(test, args){
+        if(this.shown){
+            this.toggle(false);
+        }
+        User.get({id: args.id}, function(data){
+            this.showUser(data);
+        }.bind(this));
+    }.bind(this));
+
+    $scope.$on('showFullUser', function(test, args){
+        if(this.shown){
+            this.toggle(false);
+        }
+        this.showUser(args.user);
     }.bind(this));
 
     $scope.$on('tabChanged', function(){

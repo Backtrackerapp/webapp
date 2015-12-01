@@ -15,7 +15,7 @@ angular.module('user')
                 //if we didn't click the follow or unfollow link, then show user profile:
                 if(!$(e.target).closest('a').length){
                     scope.$apply(function() {
-                        if(scope.$eval(attrs.user).id != CurrentUser.user.id) {
+                        if(!CurrentUser.user || scope.$eval(attrs.user).id != CurrentUser.user.id) {
                             $location.path('/users/' + scope.$eval(attrs.user).id);
                             $rootScope.$broadcast('hideModal');
                         } else {
@@ -27,10 +27,14 @@ angular.module('user')
             });
         },
         controllerAs: 'userCtrl',
-        controller: function($scope, User, $rootScope, CurrentUser){
+        controller: function($scope, User, $rootScope, CurrentUser, Util){
             // on $scope => user
 
-            this.is_me = CurrentUser.user.id == $scope.user.id;
+            $scope.profileImage = Util.parseProfileImage($scope.user, 40);
+
+
+            this.is_me = CurrentUser.user && CurrentUser.user.id == $scope.user.id;
+
 
             this.follow = function(user){
                 $scope.user.following_status = 'waiting'

@@ -26,19 +26,36 @@ angular.module('utils')
         $rootScope.$broadcast('logout');
     }
 
+    this.auth = function(token){
+        this.storeToken(token);
+        $rootScope.$broadcast('authed');
+    }
+
+    this.connectedResponse = function(response){
+        this.login({
+            fb_token: response.authResponse.accessToken
+        }).then(function(resp){
+            this.auth(resp.data.auth_token);
+        }.bind(this), function(error) {
+            console.error("Something went wrong: "+error.errors);
+        }.bind(this));
+    }
 
     this.loginFacebook = function() {
         Facebook.getLoginStatus(function(response) {
             if(response.status === 'connected') {
-                this.login({
-                    fb_token: response.authResponse.accessToken
-                }).then(function(resp){
-                    this.storeToken(resp.data.auth_token);
-                    $rootScope.$broadcast('authed');
-                }.bind(this), function(error) {
-                    console.error("Something went wrong: "+error.errors);
-                }.bind(this));
+                this.connectedResponse(response)
             }
+        }.bind(this));
+    }
+
+    this.loginEmail = function(email, password){
+        return this.login({
+            email: email,
+            password: password
+        }).then(function(resp){
+            this.storeToken(resp.data.auth_token);
+            $rootScope.$broadcast('authed');
         }.bind(this));
     }
 });

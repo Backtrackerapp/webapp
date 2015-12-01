@@ -27,6 +27,14 @@
     .right {
         float: right;
         z-index: 2;
+        .user-login {
+            padding-top: 11px;
+            button {
+                background: $orange;
+                color: white;
+                border: none;
+            }
+        }
     }
     li {
         float: left;
@@ -77,6 +85,7 @@
                 margin-top: 8px;
                 margin-bottom: 4px;
                 margin-right: 7px;
+                background-color: $grey;
             }
         }
 
@@ -91,7 +100,7 @@
             border-top: none;
         }
         .tabs .active {
-            background: $orange !important;
+            background: $darkBlue !important;
         }
     }
     .user-view-settings {
@@ -187,7 +196,7 @@
         background-size: 26px 22px;
         cursor: pointer;
         &:hover {
-            background-color: #e46639;
+            background-color: $darkBlue;
         }
         &.active {
             background-color: #e46639;
@@ -201,6 +210,20 @@
         &.help {
             background-image: url('/images/header-icons/help.png');
             margin-right: 10px;
+        }
+        &.profile {
+            padding: 7px;
+            div {
+                width: 30px;
+                height: 30px;
+                border: 2px solid white;
+                border-radius: 20px;
+                padding: 2px 3px;
+                img {
+                    height: 20px;
+                    width: 20px;
+                }
+            }
         }
     }
 }
@@ -221,13 +244,15 @@
     position: fixed;
     top: 60px;
     z-index: 3;
-    overflow-y: scroll;
+    left: -1px;
+    overflow-y: auto;
     overflow-x: hidden;
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.50);
     width: 70px;
-    transform: translateX(-100%);
+    transform: translateX(-150%);
     transition: all 0.3s ease;
     &.shown {
+        left: 0;
         width: 300px;
     }
     &.minimal {

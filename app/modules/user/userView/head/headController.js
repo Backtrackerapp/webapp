@@ -1,9 +1,26 @@
 'use strict';
 
-angular.module('user').controller('headController', function($scope, $rootScope, User, CurrentUser, Converse){
+angular.module('user').controller('headController', function($scope, $rootScope, User, CurrentUser, Converse, Util, $state){
 	this.popupShown = false;
 	this.infoLoaded = true;
 	this.followRequest = false;
+	this.profileImage = null;
+
+	$scope.$watch('user', function(newVal, oldVal){
+		if(newVal){
+			this.profileImage = Util.parseProfileImage(newVal, 40);
+		}
+	}.bind(this));
+
+	this.goProfile = function(){
+		if($state.current.name === 'map.users'){
+			console.log($scope.user);
+			$rootScope.$broadcast('showFullUser', {user: $scope.user});
+		} else {
+			$state.go('map.users', {id: $scope.user.id});
+		}
+
+	}
 
 	this.unfollow = function(user) {
 		this.followRequest = true;

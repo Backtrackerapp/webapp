@@ -1,33 +1,54 @@
 <!-- Highlight view for Slider panel -->
 
 <div class="selected-highlight-view">
-  <a ng-click="highlightCtrl.close()" class="close"></a>
-  <h1>{{ highlight.name }}</h1>
-  <h2>{{ highlight.address }}</h2>
-  <div class="buttons">
-    <a href="{{highlight.website || 'javascript:void(0);'}}" target="_blank" ng-class="{disabled: !highlight.website}" class="btn btn-highlight btn-highlight-website">Website</a>
-    <a href="https://maps.google.com?q={{highlight.latitude}},{{highlight.longitude}}" target="_blank" class="btn btn-highlight btn-highlight-map">Map</a>
-    <a ng-click="highlightCtrl.reportHighlight(highlight)" class="btn btn-highlight btn-highlight-report">Report</a>
-  </div>
-  <p ng-bind-html="highlight.text|simpleFormat">
-
-  </p>
-
-  <div class="bottom-bar">
-    <div class="suggested-by" ng-hide="highlight.user">
-      <img src="/images/backtrackerhighlight.png" alt="">
-      <h3>Suggested By:</h3>
-      <h2>BackTracker</h2>
+    <a ng-click="highlightCtrl.close()" class="close"></a>
+    <div class="highlight-image">
+        <div class="default-text" ng-if="default_text">
+            <h1>{{default_text}}</h1>
+        </div>
+        <img ng-src="{{highlight.image.ipad || default_image}}" />
+        <div class="highlight-name">
+            <h1>{{ highlight.name }}</h1>
+            <h2>{{ highlight.address }}</h2>
+        </div>
+        <div class="buttons">
+            <a ng-click="highlightCtrl.reportHighlight(highlight)" class="btn btn-highlight btn-highlight-report">Report</a>
+            <a href="https://maps.google.com?q={{highlight.latitude}},{{highlight.longitude}}" target="_blank" class="btn btn-highlight btn-highlight-map">Map</a>
+            <a href="{{highlight.website || 'javascript:void(0);'}}" target="_blank" ng-class="{disabled: !highlight.website}" class="btn btn-highlight btn-highlight-website">Website</a>
+        </div>
+    </div
+    ><div class="user-bar">
+        <div class="suggested-by" ng-hide="highlight.user">
+            <div class="image circle"></div>
+            <div class="image">
+                <img src="/images/backtrackerhighlight.png" alt="">
+            </div>
+            <div class="name">
+                <h3>Suggested By:</h3>
+                <h2>BackTracker</h2>
+            </div>
+        </div
+        ><div class="suggested-by user" ng-show="highlight.user" ng-click="goUser()">
+            <div class="image circle"></div>
+            <div class="image">
+                <img ng-src="{{highlightCtrl.profileImage}}" alt="">
+            </div>
+            <div class="name">
+                <h3>Suggested By:</h3>
+                <h2>{{highlight.user.first_name}} {{highlight.user.last_name}}</h2>
+            </div>
+        </div
+        ><a ng-click="highlightCtrl.like(highlight)" class="like-link" ng-class="{liked: highlight.liked, liking: highlightCtrl.liking}">
+            <div ng-show="highlightCtrl.liking"><loader></loader></div>
+            <span>{{highlight.likes_count}}</span>
+        </a
+        ><a class="suggest" ng-click="highlightCtrl.suggestHighlight()">
+            Share a suggestion
+        </a>
     </div>
-    <div class="suggested-by" ng-show="highlight.user">
-      <img ng-src="http://graph.facebook.com/{{highlight.user.fbid}}/picture?type=square&width=40&height=40" alt="">
-      <h3>Suggested By:</h3>
-      <h2>{{highlight.user.first_name}} {{highlight.user.last_name}}</h2>
-    </div>
-    <a ng-click="highlightCtrl.like(highlight)" class="like-link" ng-class="{liked: highlight.liked, liking: liking}">
-      <div ng-show="liking"><loader></loader></div>
-      <span>{{highlight.likes_count}}</span>
-    </a>
-  </div>
+
+    <p ng-bind-html="highlight.text|simpleFormat">
+
+    </p>
 
 </div>

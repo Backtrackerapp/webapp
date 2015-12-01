@@ -89,9 +89,7 @@ angular.module('journey')
                 }.bind(this));
                 CurrentUser.getUser();
                 $rootScope.$broadcast('reloadJourney');
-                this.step = 4;
-                this.cancelAction = "Skip";
-                this.action = "Add Pin";
+                $scope.params.close();
             }.bind(this),
             function(data){
                 if(data.lonlat) {

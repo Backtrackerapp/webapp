@@ -13,25 +13,25 @@
             </a>
         </li>
         <li>
-            <a class="best-trip colored" href="#/best-trips">
+            <a class="best-trip colored" href="#/best_trips">
                 <div class="icon"><img src="images/bestTrips.png" /></div>
                 Best trips
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a class="nearby colored" href="#/nearby">
                 <div class="icon"><img style="height: 28px;" src="images/nearby.png" /></div>
                 Nearby
             </a>
-        </li>
+        </li> -->
         <li>
             <a class="friends colored" href="#/friends">
                 <div class="icon"><img src="images/friends.png" /></div>
                 Friends
             </a>
         </li>
-        <li>
-            <a href="#/">
+        <li ng-if="user">
+            <a ng-href="#/users/{{user.id}}">
                 <div class="icon"><img style="height: 25px;" src="images/profile.png" /></div>
                 Profile
             </a>
@@ -54,11 +54,11 @@
                 Gallery
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a href="">
                 <div class="icon"><img style="height: 27px;" src="images/settings.png" /></div>
                 Settings
             </a>
-        </li>
+        </li> -->
     </ul>
 </div>

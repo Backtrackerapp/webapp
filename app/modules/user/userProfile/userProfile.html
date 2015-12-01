@@ -1,0 +1,73 @@
+<!-- Profile view for slider -->
+
+<div class="ProfileView">
+    <div ng-if="!settings">
+        <div class="profile-top" ng-style="{'background-image': 'url('+cover_image+')'}">
+            <div class="top-content">
+                <div class="about" ng-class="{left: content > 0}">
+                    <h1>"{{user.aboutme || "I'm really very interesting, promise"}}"</h1>
+                </div>
+                <div class="main" ng-class="{left: content > 1, right: content < 1}">
+                    <div class="profile-image">
+                        <img ng-src="{{profile_image}}" />
+                    </div>
+                    <div class="name">
+                        <h1>{{user.first_name}} {{user.last_name}}</h1>
+                    </div>
+                </div>
+                <div class="social" ng-class="{right: content < 2}">
+                    <a target="_blank" ng-href="{{fbpage}}"><img src="images/facebook-white.png" ng-class="{active: fbpage}"/></a>
+                    <a target="_blank" ng-href="{{user.instagram}}"><img src="images/instagram-white.png" ng-class="{active: user.instagram}"/></a>
+                    <a target="_blank" ng-href="{{user.twitter}}"><img src="images/twitter-white.png" ng-class="{active: user.twitter}"/></a>
+                    <a target="_blank" ng-href="{{user.webpage}}"><img src="images/web-white.svg" ng-class="{active: user.webpage}"/></a>
+                </div>
+                <div class="right-arrow" ng-click="right()">
+                    <img src="images/profile-arrow-right.svg" />
+                </div>
+                <div class="left-arrow" ng-click="left()">
+                    <img src="images/profile-arrow-left.svg" />
+                </div>
+                <div class="nav-blobs">
+                    <span ng-class="{active: content === 0}"></span>
+                    <span ng-class="{active: content === 1}"></span>
+                    <span ng-class="{active: content === 2}"></span>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="journey" ng-click="changeView('journey')" ng-class="{active: view === 'journey'}">
+                    <h1>{{user.journeys.length}} Journeys</h1>
+                </div
+                ><div class="photos" ng-click="changeView('photos')" ng-class="{active: view === 'photos'}">
+                    <img src="images/pictures.svg" /><h1>Photos</h1>
+                </div
+                ><div class="followers" ng-click="changeView('followers')" ng-class="{active: view === 'followers'}">
+                    <img src="images/profile-following.svg" /> <h1>{{user.followed_count}} Followers</h1>
+                </div
+                ><div class="following" ng-click="changeView('following')" ng-class="{active: view === 'following'}">
+                    <img src="images/profile-following.svg" /> <h1>{{user.following_count}} Following</h1>
+                </div>
+            </div>
+        </div>
+        <div class="settings" ng-click="editUser()" ng-if="user.is_me">
+            Settings <img src="images/header-icons/settings.png" align="middle"/>
+        </div>
+        <div class="journeys" ng-show="view === 'journey'">
+            <div class="journey-thumb" ng-repeat="journey in user.journeys" ng-click="goJourney(journey)">
+                <span class="post-count">{{journey.posts_count}}</span><span class="name"><h1>{{journey.name}}</h1></span>
+            </div>
+        </div>
+        <div class="followers" ng-show="view === 'followers'">
+            <loader ng-if="loading"></loader>
+            <ul>
+                <list-user ng-repeat="user in user.followers" user="user" buttons="true" ng-click="goUser(user)"></list-user>
+            </ul>
+        </div>
+        <div class="following" ng-show="view === 'following'">
+            <loader ng-if="loading"></loader>
+            <ul>
+                <list-user ng-repeat="user in user.following" user="user" buttons="true" ng-click="goUser(user)"></list-user>
+            </ul>
+        </div>
+    </div>
+    <user-settings ng-if="settings"></user-settings>
+</div>

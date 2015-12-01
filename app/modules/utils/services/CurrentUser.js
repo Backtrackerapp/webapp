@@ -21,7 +21,7 @@ angular.module('utils')
         })
     };
 
-    if(Auth.token){
+    if(Auth.token != 'null'){
         this.getUser();
     }
 

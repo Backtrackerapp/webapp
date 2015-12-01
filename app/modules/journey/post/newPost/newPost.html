@@ -14,7 +14,7 @@
     </div>
     <div class="control">
       <label>Post Date</label>
-      <datepicker date-format="dd MMM yyyy" date-max-limit="{{newCtrl.today | date:'yyyy-MM-dd'}}">
+      <datepicker date-format="dd MMM yyyy">
         <input ng-model="newCtrl.postDate" type="text"/>
       </datepicker>
       <p class="error" ng-show="newCtrl.postDateError">{{ newCtrl.postDateError }}</p>
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <div class="step" step="newCtrl.step" shown="4">
+  <!-- <div class="step" step="newCtrl.step" shown="4">
     <p>Show people where you're thinking of travelling by adding a 'ghost' pin ahead of this post. This lets your followers know where you're headed next.</p>
     <p>It's optional, just skip this step if you're not sure.</p>
     <div class="control">
@@ -55,7 +55,7 @@
       <img src="/images/bigloader.gif" alt="">
       <h3>Uploading Ghost Pin</h3>
     </div>
-  </div>
+  </div> -->
 
   <div class="actions">
     <a class="btn btn-darkBlue" ng-click="params.close()">{{newCtrl.cancelAction}}</a>

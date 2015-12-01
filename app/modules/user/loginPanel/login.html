@@ -1,0 +1,28 @@
+<div class="loginPanel" ng-show="show">
+    <div class="shadow" ng-click="show = false">
+    </div>
+    <div class="login-content signup" ng-class="content">
+        <img src="images/brushlogo.png" />
+        <div class="signup">
+            <button class="login-btn" ng-click="content = 'login'">Log in</button>
+            <button class="facebook" ng-click="createFacebook()">Sign up with Facebook</button>
+            <h3>or</h3>
+            <form name="signup">
+                <input type="text" placeholder="First name" ng-model="first_name" required>
+                <input type="text" placeholder="Last name" ng-model="last_name" required>
+                <input type="email" placeholder="Email" ng-model="email" required>
+                <input type="password" placeholder="Password" ng-model="password" required minLength="5">
+                <button class="create" ng-click="createEmail()">Sign up</button>
+            </form>
+        </div>
+        <div class="login">
+            <button class="signup-btn" ng-click="content = 'signup'">Sign up</button>
+            <button class="facebook" ng-click="loginFacebook()">Log in with Facebook</button>
+            <h3>or</h3>
+            <form name="login">
+                <input type="email" placeholder="Email" ng-model="email" required>
+                <input type="password" placeholder="Password" ng-model="password" required minLength="5">
+                <button class="create" ng-disabled="login.$invalid" ng-click="loginEmail()">Log in</button>
+            </form>
+    </div>
+</div>

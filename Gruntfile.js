@@ -53,7 +53,7 @@ module.exports = function (grunt) {
       },
       dev: {
         constants: {
-          apiUrl: '//backtrackerdev.herokuapp.com'
+          apiUrl: '//floating-gorge-9124.herokuapp.com'
         }
       },
       prod: {
@@ -284,7 +284,6 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/modules/**/*.js',
           '<%= yeoman.dist %>/*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }

@@ -4,14 +4,14 @@
     <h1>{{editCtrl.post.name}}</h1>
     <div class="control">
       <label>Post Date</label>
-      <datepicker date-format="dd MMM yyyy" date-max-limit="{{editCtrl.today | date:'yyyy-MM-dd'}}">
+      <datepicker date-format="dd MMM yyyy">
         <input ng-model="editCtrl.post.date" type="text"/>
       </datepicker>
       <p class="error" ng-show="editCtrl.postDateError">{{ postDateError }}</p>
     </div>
     <div class="control">
       <label>Upload Photo</label>
-      <file-upload files='editCtrl.files' current='editCtrl.post.cover_image'></file-upload>
+      <image-dropper files='editCtrl.files' current='editCtrl.post.cover_image'></image-dropper>
     </div>
     <div class="control">
       <label>Text</label>

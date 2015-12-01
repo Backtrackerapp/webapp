@@ -12,10 +12,13 @@
       }
     });
 
-    app.directive('conversationUser', function(){
+    app.directive('conversationUser', function(Util){
       return {
         restrict: 'E',
         templateUrl: 'modules/conversation/conversationList/conversationUser.html',
+        link: function(scope){
+            scope.profileImage = Util.parseProfileImage(scope.conversation.other, 40);
+        },
         scope: {
           conversation: '='
         }

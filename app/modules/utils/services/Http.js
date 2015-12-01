@@ -1,5 +1,5 @@
 angular.module('utils')
-.service('Http', function($http, Auth){
+.service('Http', function($http, Auth, $upload){
 
     this.header = function(){
         if(Auth.token){
@@ -19,6 +19,16 @@ angular.module('utils')
         }).then(function(response){
             return response.data;
         }).then(success, error);
+    }
+
+    this.upload = function(url, file, name, success, error){
+        $upload.upload({
+            url: url,
+            method: 'PATCH',
+            file: file,
+            fileFormDataName: name,
+            headers: this.header()
+        }).success(success).error(error)
     }
 
     this.get = function(url, params, success, error){

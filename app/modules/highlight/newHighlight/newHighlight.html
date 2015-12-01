@@ -1,26 +1,32 @@
 <div class="new-highlight">
-  <div class="step" ng-class="{shown: newCtrl.step == 1, prev: newCtrl.step == 2}">
-    <p>We keep our highlights up-to-date by inviting BackTrackers to make suggestions. Share something amazing with us and it could appear on the map for the whole community to benefit from!</p>
-    <div class="control">
-      <label>Location</label>
-      <input type="text" auto-focus ng-model="newCtrl.searchField" ng-autocomplete="results" options="newCtrl.autocompleteOptions" placeholder="Search&hellip;" value="">
-      <p class="error" ng-show="newCtrl.searchFieldError">{{ newCtrl.searchFieldError }}</p>
+    <div class="no-user" ng-hide="user">
+        <h3> Log in to suggest a highlight</h3>
+        <a class="btn-darkBlue" ng-click="params.close()">Close</a>
     </div>
-    <p>If you can't find your highlight in the suggestions (sometimes the best things are off the map!) just describe where it is, or get the correct latitude and longitude, and we'll do our best to locate it</p>
-    <div class="control">
-      <label>Text</label>
-      <textarea ng-model="newCtrl.postText" placeholder="Any additional info here&hellip;"></textarea>
-      <p class="error" ng-show="newCtrl.postTextError">{{ newCtrl.postTextError }}</p>
+    <div class="user" ng-show="user">
+        <div class="step" ng-class="{shown: newCtrl.step == 1, prev: newCtrl.step == 2}">
+            <p>We keep our highlights up-to-date by inviting BackTrackers to make suggestions. Share something amazing with us and it could appear on the map for the whole community to benefit from!</p>
+            <div class="control">
+                <label>Location</label>
+                <input type="text" auto-focus ng-model="newCtrl.searchField" ng-autocomplete="results" options="newCtrl.autocompleteOptions" placeholder="Search&hellip;" value="">
+                <p class="error" ng-show="newCtrl.searchFieldError">{{ newCtrl.searchFieldError }}</p>
+            </div>
+            <p>If you can't find your highlight in the suggestions (sometimes the best things are off the map!) just describe where it is, or get the correct latitude and longitude, and we'll do our best to locate it</p>
+            <div class="control">
+                <label>Text</label>
+                <textarea ng-model="newCtrl.postText" placeholder="Any additional info here&hellip;"></textarea>
+                <p class="error" ng-show="newCtrl.postTextError">{{ newCtrl.postTextError }}</p>
+            </div>
+        </div>
+        <div class="step" ng-class="{shown: newCtrl.step == 2, next: newCtrl.step == 1, prev: newCtrl.step == 3}">
+            <div class="big-step-loader">
+                <img src="/images/bigloader.gif" alt="">
+                <h3>Suggesting Highlight</h3>
+            </div>
+        </div>
+        <div class="actions">
+            <a class="btn btn-darkBlue" ng-click="params.close()">Cancel</a>
+            <a class="btn btn-action" ng-show="newCtrl.step==1" ng-click="newCtrl.submit()">{{newCtrl.action}}</a>
+        </div>
     </div>
-  </div>
-  <div class="step" ng-class="{shown: newCtrl.step == 2, next: newCtrl.step == 1, prev: newCtrl.step == 3}">
-    <div class="big-step-loader">
-      <img src="/images/bigloader.gif" alt="">
-      <h3>Suggesting Highlight</h3>
-    </div>
-  </div>
-  <div class="actions">
-    <a class="btn btn-darkBlue" ng-click="params.close()">Cancel</a>
-    <a class="btn btn-action" ng-show="newCtrl.step==1" ng-click="newCtrl.submit()">{{newCtrl.action}}</a>
-  </div>
 </div>

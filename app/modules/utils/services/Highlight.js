@@ -3,6 +3,11 @@
 angular.module('utils')
 .service('Highlight', function(Http, apiUrl) {
 
+    this.save = function(params, success, error){
+        var url = apiUrl+'/api/v2/highlights'
+        return Http.post(url, params, success, error);
+    }
+
     this.show = function(params, success, error){
         var url = apiUrl+"/api/v2/highlights/"+params.id
         return Http.get(url, params, success, error);

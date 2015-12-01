@@ -50,7 +50,8 @@
 			},
 			scope: {
 				show: "=",
-				hover: "="
+				hover: "=",
+				user: "="
 			}
 		};
 	});

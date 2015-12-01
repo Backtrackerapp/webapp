@@ -1,15 +1,18 @@
 'use strict';
 
 angular.module('states')
-  .controller('HighlightsController', function ($scope, $rootScope, $timeout, Highlight, CurrentUser, Map, Cache) {
+  .controller('HighlightsController', function ($scope, $rootScope, $timeout, Highlight, CurrentUser, Map, Cache, $state, $location) {
     $rootScope.$broadcast('tabChanged', {tab: 'highlights'});
+    $rootScope.$broadcast('hideChrome');
 
     this.highlights = Cache.highlights;
     Map.resetCluster();
 
+
     //Again don't want this on $scope but no choice due to ng-view
     $scope.clickHighlight = function(highlight) {
-      $rootScope.$broadcast('showHighlight', {highlight: highlight});
+        var id = JSON.parse(highlight).id
+        $rootScope.$broadcast('showHighlight', {id: id});
     }
 
     this.within = function(bounds){
@@ -33,19 +36,19 @@ angular.module('states')
     }
 
     //If logged in get highlights or get highlights on log in
-    if(CurrentUser.loggedIn) {
-      this.getHighlights();
-    } else {
-      $scope.$on('loggedIn', function() {
+    if(this.highlights.length>0) {
         this.getHighlights();
-        $rootScope.$broadcast('showChrome');
-        var map = Map.getMap();
-        $timeout(function() {
-          if(!map.hasLayer(Map.markers)) {
-            map.addLayer(Map.markers);
-          }
-        }, 10);
-      }.bind(this));
+    } else {
+        $timeout(function(){
+            this.getHighlights();
+            $rootScope.$broadcast('hideChrome');
+            var map = Map.getMap();
+            $timeout(function() {
+                if(!map.hasLayer(Map.markers)) {
+                    map.addLayer(Map.markers);
+                }
+            }, 10);
+        }.bind(this), 100)
     }
 
     $scope.$on('mapUpdate', function(event, args) {

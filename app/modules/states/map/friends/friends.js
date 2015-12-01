@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('states')
-  .controller('FriendsController', function ($scope, $rootScope, User, CurrentUser, Map, Cache) {
+  .controller('FriendsController', function ($scope, $rootScope, User, CurrentUser, Map, Cache, Util) {
     $rootScope.$broadcast('tabChanged', {tab: 'friends'});
 
     this.friends = Cache.friends;
+
+    $scope.profileImage = Util.parseProfileImage;
 
     //Yet again don't want this on $scope but no choice
     $scope.clickUser = function(user) {

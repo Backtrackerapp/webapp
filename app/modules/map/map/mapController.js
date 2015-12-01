@@ -19,7 +19,7 @@ angular.module('map')
     var map = Map.getMap();
     if(!map) return;
     //Some problem with async?
-    if(args.tab == 'highlights') {
+    if(args.tab === 'highlights') {
       $timeout(function() {
         if(!map.hasLayer(Map.markers)) {
           map.addLayer(Map.markers);

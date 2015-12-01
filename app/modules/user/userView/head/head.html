@@ -1,18 +1,21 @@
 <div class="user-view-top" ng-class="{infoLoaded: headCtrl.infoLoaded}">
-  <img src="http://graph.facebook.com/{{user.fbid}}/picture?type=square&width=40&height=40" alt="" />
-  <div class="user-meta">
-    <h1>{{user.first_name}} {{user.last_name}}</h1>
-    <a ng-click="headCtrl.follow(user)" ng-show="user.following_status == 'not_following' && !headCtrl.followRequest" class="btn btn-blue">Follow</a>
-    <a ng-click="headCtrl.unfollow(user)" ng-show="user.following_status == 'following' && !headCtrl.followRequest" class="btn btn-blue">Unfollow</a>
-    <a class="btn btn-blue" ng-show="user.following_status == 'waiting' && !headCtrl.followRequest">Request Sent</a>
-    <a class="btn btn-lightGrey" ng-show="headCtrl.followRequest"><loader></loader></a>
-    <a class="btn btn-darkBlue" ng-click="headCtrl.togglePopup()"><span class="more-icon"></span></a>
-    <ul class="popup" ng-show="headCtrl.popupShown">
-      <li ng-if="user.can_chat" ng-click="headCtrl.chatToUser(user)">Chat to {{user.first_name}}</li>
-      <li ng-click="headCtrl.reportUser(user)">Report {{user.first_name}}</li>
-      <li class="destructive" ng-click="headCtrl.blockUser(user)">Block {{user.first_name}}</li>
-    </ul>
-  </div>
-  <div class="arrow" ng-click="headCtrl.expand()"></div>
-  <!-- <div class="user-loading" ng-show="loading"><loader></loader></div> -->
+    <img src="{{headCtrl.profileImage}}" alt="" />
+    <div class="user-meta">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+        <span ng-hide="user.is_me">
+            <a ng-click="headCtrl.follow(user)" ng-show="user.following_status == 'not_following' && !headCtrl.followRequest" class="btn btn-blue">Follow</a>
+            <a ng-click="headCtrl.unfollow(user)" ng-show="user.following_status == 'following' && !headCtrl.followRequest" class="btn btn-blue">Unfollow</a>
+            <a class="btn btn-blue" ng-show="user.following_status == 'waiting' && !headCtrl.followRequest">Request Sent</a>
+            <a class="btn btn-lightGrey" ng-show="headCtrl.followRequest"><loader></loader></a>
+        </span>
+        <a class="btn btn-darkBlue" ng-click="headCtrl.togglePopup()"><span class="more-icon"></span></a>
+        <ul class="popup" ng-show="headCtrl.popupShown">
+            <li ng-click="headCtrl.goProfile()">View profile</li>
+            <li ng-if="user.can_chat" ng-click="headCtrl.chatToUser(user)">Chat to {{user.first_name}}</li>
+            <li ng-click="headCtrl.reportUser(user)">Report {{user.first_name}}</li>
+            <li class="destructive" ng-click="headCtrl.blockUser(user)">Block {{user.first_name}}</li>
+        </ul>
+    </div>
+    <div class="arrow" ng-click="headCtrl.expand()"></div>
+    <!-- <div class="user-loading" ng-show="loading"><loader></loader></div> -->
 </div>
