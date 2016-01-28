@@ -1,10 +1,9 @@
 <div class="loginPanel" ng-show="show">
-    <div class="shadow" ng-click="show = false">
-    </div>
-    <div class="login-content signup" ng-class="content">
-        <img src="images/brushlogo.png" />
+    <div class="shadow" ng-click="show = false"></div>
+    <div class="login-content" ng-class="content">
+        <img class="top-logo" src="images/brushlogo.png" />
         <div class="signup">
-            <button class="login-btn" ng-click="content = 'login'">Log in</button>
+            <button class="login-btn" ng-click="contentLogin()">Log in</button>
             <button class="facebook" ng-click="createFacebook()">Sign up with Facebook</button>
             <h3>or</h3>
             <form name="signup">
@@ -16,13 +15,36 @@
             </form>
         </div>
         <div class="login">
-            <button class="signup-btn" ng-click="content = 'signup'">Sign up</button>
+            <button class="signup-btn" ng-click="contentSignup()">Sign up</button>
             <button class="facebook" ng-click="loginFacebook()">Log in with Facebook</button>
             <h3>or</h3>
             <form name="login">
                 <input type="email" placeholder="Email" ng-model="email" required>
-                <input type="password" placeholder="Password" ng-model="password" required minLength="5">
+                <input type="password" placeholder="Password" ng-model="password" required>
                 <button class="create" ng-disabled="login.$invalid" ng-click="loginEmail()">Log in</button>
             </form>
+            <div ng-if="!error">
+                <h3 class="signup-text">
+                    Don't have an account yet?
+                </h3>
+                <button class="signup-bottom" ng-click="contentSignup()">Sign up here!</button>
+            </div>
+        </div>
+        <div class="prompt">
+            <h2>Hello Stranger.</h2>
+            <br>
+            <h4>You'll have to login to start your own journey,<br>
+                follow your favourite users and share your <br>
+                suggestions with the backpacking community.
+            </h4>
+            <img class="line" src="images/login-trail.png" />
+            <button class="yes" ng-click="contentSignup(true)">Join the community</button>
+        </div>
+        <div class="error" ng-if="error">
+            <h4>
+                Oops something went wrong<br>
+                {{error}}
+            </h4>
+        </div>
     </div>
 </div>

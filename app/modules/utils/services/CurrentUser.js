@@ -7,7 +7,7 @@ angular.module('utils')
     this.loggedIn = false;
 
 
-    this.getUser = function() {
+    this.getUser = function(returning) {
         User.current(null, function(data){
             this.user = data;
             var m = 'refreshUser';
@@ -17,7 +17,6 @@ angular.module('utils')
             }
             $rootScope.$broadcast(m, {});
         }.bind(this), function(err){
-            console.log("woops");
         })
     };
 

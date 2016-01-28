@@ -62,16 +62,15 @@
         margin-right: 16px;
         max-height: 60px;
         .user-open {
-            padding: 8px 50px 8px 20px;
-            min-width: 152px;
+            padding: 8px 20px 8px 20px;
             max-height: 60px;
             &:hover {
                 background-color: darken($thinBlue, 3%);
             }
-            background-image: url('/images/whitedownarrow.png');
-            background-repeat: no-repeat;
-            background-position: 90% 54%;
-            background-size: 15px 7px;
+            // background-image: url('/images/whitedownarrow.png');
+            // background-repeat: no-repeat;
+            // background-position: 90% 54%;
+            // background-size: 15px 7px;
             cursor: pointer;
             > span {
                 position: relative;

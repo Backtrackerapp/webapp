@@ -1,5 +1,5 @@
 angular.module('best-trips')
-.controller('bestListController', function($scope, $location, Featured, $sce, $state, Map, Journey){
+.controller('bestListController', function($scope, $location, Featured, $sce, $state, Map, Journey, Mixpanel){
     if($location.path() === '/best_trips'){
         $scope.show = true;
     } else {
@@ -31,6 +31,7 @@ angular.module('best-trips')
 
     $scope.showJourney = function(){
         if($scope.selected){
+            Mixpanel.track('Best_Trips_View_Journey');
             $state.go('map.journey', {id:$scope.selected.journey.id});
             $scope.back();
         }
@@ -48,8 +49,12 @@ angular.module('best-trips')
         if(args.tab === 'best trips'){
             $scope.show = true;
             if(!$state.params.id){
+                Mixpanel.track('Best_Trips_List');
                 $scope.back();
             } else {
+                Mixpanel.track('Best_Trip_Selected', {
+                    id: $state.params.id
+                });
                 $scope.featured_journeys.forEach(function(j){
                     if(j.id+"" === $state.params.id) {
                         $scope.showFeatured(j);
@@ -65,12 +70,20 @@ angular.module('best-trips')
         Featured.list(null, function(journeys){
             $scope.featured_journeys = journeys;
             if($state.params.id){
+                if($scope.show) {
+                    Mixpanel.track('Best_Trip_Selected', {
+                        id: $state.params.id
+                    });
+                }
                 journeys.forEach(function(j){
                     if(j.id+"" === $state.params.id) {
                         $scope.showFeatured(j);
                     }
                 })
+            } else if($scope.show){
+                Mixpanel.track('Best_Trips_List');
             }
+
         }, function(error){
             console.error("something went wrong in featured journeys");
         });

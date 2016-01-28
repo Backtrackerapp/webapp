@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('states')
-.controller('UserController', function ($scope, $rootScope, $stateParams, User, CurrentUser, Map, $state, Util) {
+.controller('UserController', function ($scope, $rootScope, $stateParams, User, CurrentUser, Map, $state, Util, Mixpanel) {
     $rootScope.$broadcast('tabChanged', {tab: 'friends'});
-    $rootScope.$broadcast('hideChrome');
+    // $rootScope.$broadcast('hideChrome');
 
     this.user = null;
     this.profileImage = null;
@@ -36,11 +36,16 @@ angular.module('states')
     // }
 
     $scope.$on('actionButtonPressed', function() {
+        if(!CurrentUser.loggedIn) {
+			$rootScope.$broadcast('loginPanel', {
+                where: 'Users_Action_Button'
+            });
+			return;
+		}
+        Mixpanel.track('Friend_Add');
         $rootScope.$broadcast('showModal', {
             title: "Add Friends",
-            class: "add-friends",
-            template: "views/friends/add.html",
-            journey_id: 1
+            template: "<add-friends></add-friends>"
         });
     });
 });

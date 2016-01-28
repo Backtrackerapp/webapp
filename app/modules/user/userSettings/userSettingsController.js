@@ -1,14 +1,14 @@
 angular.module('user')
-.controller('UserSettingsController', function($scope, User, CurrentUser, $rootScope, Util, Auth, $state){
+.controller('UserSettingsController', function($scope, User, CurrentUser, $rootScope, Util, Auth, $state, Mixpanel){
 
     $scope.profile_image = Util.parseProfileImage($scope.user, 100);
     $scope.cover_image = Util.parseCoverImage($scope.user);
-    $scope.name = '';
-    $scope.twitter = '';
-    $scope.facebook = '';
-    $scope.instagram = '';
-    $scope.website = '';
-    $scope.about = '';
+    $scope.name = $scope.user.first_name + ' ' + $scope.user.last_name;
+    $scope.twitter = $scope.user.twitter || '';
+    $scope.facebook = $scope.user.fbpage || '';
+    $scope.instagram = $scope.user.instagram || '';
+    $scope.website = $scope.user.webpage || '';
+    $scope.about = $scope.user.aboutme || '';
     $scope.privacy = $scope.user.privacy;
     $scope.cover_files = [];
     $scope.profile_files = [];
@@ -18,6 +18,7 @@ angular.module('user')
     $scope.tab = 'info';
 
     $scope.logout = function(){
+        Mixpanel.track('Settings_Logout');
         Auth.logout();
         $scope.$parent.settings = false;
     }
@@ -45,12 +46,13 @@ angular.module('user')
             params.last_name = arr[1];
         }
         if($scope.twitter.length > 0){ params.twitter = $scope.twitter; }
-        if($scope.facebook.length > 0){ params.facebook = $scope.facebook; }
+        if($scope.facebook.length > 0){ params.fbpage = $scope.facebook; }
         if($scope.instagram.length > 0){ params.instagram = $scope.instagram; }
-        if($scope.website.length > 0){ params.website = $scope.website; }
+        if($scope.website.length > 0){ params.webpage = $scope.website; }
         if($scope.about.length > 0){ params.aboutme = $scope.about; }
         if($scope.privacy != $scope.user.privacy ){ params.privacy = $scope.privacy; }
 
+        console.log(params);
         var promises = [update(params)];
         if($scope.cover_files.length > 0){
             promises.push(upload($scope.cover_files[0], 'cover_image'))
@@ -61,6 +63,7 @@ angular.module('user')
         $scope.saving = true;
         $scope.error = false;
         Promise.all(promises).then(function(resolve){
+            Mixpanel.track('Settings_Save', { success: true });
             $scope.saving = false;
             $scope.user = resolve[0];
             if(resolve.length > 1){
@@ -76,6 +79,7 @@ angular.module('user')
             }
             console.log(resolve);
         }, function(error){
+            Mixpanel.track('Settings_Save', { success: true });
             $scope.saving = false;
             $scope.errorText = error.data.errors.join(', ');
             $scope.error = true;

@@ -44,7 +44,7 @@ angular.module('slider')
     $scope.$on('close', function(test, args){
         //Close the slider... if (int)args.open is specified, then reopen in that amount of time
         this.toggle(false);
-        if(args.open) {
+        if(args && args.open) {
             $timeout(function() {
                 this.toggle(true);
             }.bind(this), args.open);
@@ -79,6 +79,9 @@ angular.module('slider')
     }.bind(this));
 
     $scope.$on('slideProfile', function(test, args){
+        if(this.user.id === args.id && this.showing === 'user'){
+            return;
+        }
         if(this.shown){
             this.toggle(false);
         }
@@ -99,7 +102,9 @@ angular.module('slider')
     }.bind(this))
 
     $scope.$on('mapTapped', function() {
-        this.toggle(false);
+        if(this.showing != 'user'){
+            this.toggle(false);
+        }
     }.bind(this));
 
 });

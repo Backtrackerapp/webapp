@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('user').controller('headController', function($scope, $rootScope, User, CurrentUser, Converse, Util, $state){
+angular.module('user').controller('headController', function($scope, $rootScope, User, CurrentUser, Converse, Util, $state, Mixpanel){
 	this.popupShown = false;
 	this.infoLoaded = true;
 	this.followRequest = false;
@@ -28,6 +28,9 @@ angular.module('user').controller('headController', function($scope, $rootScope,
 			id:user.id
 		},
 		function(user){
+			Mixpanel.track('Unfollow_User', {
+				where: 'User_Thumb'
+			});
 			this.followRequest = false;
 			$scope.user = user;
 		}.bind(this),
@@ -37,12 +40,21 @@ angular.module('user').controller('headController', function($scope, $rootScope,
 	}
 
 	this.follow = function(user) {
+		if(!CurrentUser.loggedIn) {
+			$rootScope.$broadcast('loginPanel', {
+                where: 'Follow_Thumb'
+            });
+			return;
+		}
 		this.followRequest = true;
 		User.follow({
 			id:user.id,
 			access_token: CurrentUser.accessToken
 		},
 		function(user){
+			Mixpanel.track('Follow_User', {
+				where: 'User_Thumb'
+			});
 			this.followRequest = false;
 			$scope.user = user;
 		}.bind(this),

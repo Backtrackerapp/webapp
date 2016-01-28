@@ -226,7 +226,7 @@
   background: #fff;
   z-index: 3;
   @include transition(right .3s);
-  box-shadow: -1px 0px 4px 0px rgba(0,0,0,0.50);
+  box-shadow: -2px 0px 4px 0px rgba(0,0,0,0.50);
   ul.table-view{
     overflow-y:auto;
   }

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('journey')
-.controller('NewPostController', function ($scope, $rootScope, $http, CurrentUser, $upload, apiUrl, Journey, underscore) {
+.controller('NewPostController', function ($scope, $rootScope, $http, CurrentUser, $upload, apiUrl, Journey, underscore, Mixpanel) {
+    Mixpanel.track('Journey_Add_Post')
+
     //on $Scope params = {journey_id, close}
     this.step = 1;
 
@@ -32,6 +34,10 @@ angular.module('journey')
     this.action = "Next";
     this.cancelAction = "Cancel";
 
+    this.isFuture = function(){
+        return this.today < new Date(this.postDate);
+    }
+
     this.nextStep = function() {
         if(this.step === 1) {
             // Finished the first page
@@ -55,6 +61,7 @@ angular.module('journey')
             }
             this.action = "Post";
             this.step = 2;
+            Mixpanel.track('Journey_Add_Post_2')
             return;
         }
 
@@ -81,6 +88,10 @@ angular.module('journey')
                 access_token: CurrentUser.accessToken,
             },
             function(user){
+                Mixpanel.track('Journey_Add_Post_Submit', {
+                    success: true,
+                    future: this.isFuture()
+                });
                 CurrentUser.user = user;
                 underscore.each(CurrentUser.user.journeys, function(j) {
                     if(j.name === this.journey.name) {
@@ -88,10 +99,14 @@ angular.module('journey')
                     }
                 }.bind(this));
                 CurrentUser.getUser();
-                $rootScope.$broadcast('reloadJourney');
+                $rootScope.$broadcast('reloadJourney', { image: file });
                 $scope.params.close();
             }.bind(this),
             function(data){
+                Mixpanel.track('Journey_Add_Post_Submit', {
+                    success: false,
+                    future: this.isFuture()
+                });
                 if(data.lonlat) {
                     this.step = 1;
                     this.cancelAction = "Cancel";
@@ -105,29 +120,29 @@ angular.module('journey')
             }.bind(this));
         }
 
-        if(this.step === 4) {
-            // Ghost post ready
-            if(this.ghostSearchField === "") {
-                this.ghostSearchFieldError = "Please enter a location";
-                return;
-            }
-            this.step = 5;
-            Journey.ghost({
-                location_name: this.ghostSearchField,
-                journey_id: this.journey.id,
-                date: this.postDate,
-                access_token: CurrentUser.accessToken
-            },
-            function(){
-                $rootScope.$broadcast('reloadJourney');
-                $scope.params.close();
-            }.bind(this),
-            function(data) {
-                if(data.lonlat) {
-                    this.step = 4;
-                    this.ghostSearchFieldError = "We couldn't find this location, please try again";
-                }
-            }.bind(this));
-        }
+        // if(this.step === 4) {
+        //     // Ghost post ready
+        //     if(this.ghostSearchField === "") {
+        //         this.ghostSearchFieldError = "Please enter a location";
+        //         return;
+        //     }
+        //     this.step = 5;
+        //     Journey.ghost({
+        //         location_name: this.ghostSearchField,
+        //         journey_id: this.journey.id,
+        //         date: this.postDate,
+        //         access_token: CurrentUser.accessToken
+        //     },
+        //     function(){
+        //         $rootScope.$broadcast('reloadJourney');
+        //         $scope.params.close();
+        //     }.bind(this),
+        //     function(data) {
+        //         if(data.lonlat) {
+        //             this.step = 4;
+        //             this.ghostSearchFieldError = "We couldn't find this location, please try again";
+        //         }
+        //     }.bind(this));
+        // }
     };
 });

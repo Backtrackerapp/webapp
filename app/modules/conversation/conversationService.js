@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('conversation')
-.service('Converse', function(Conversation, CurrentUser, underscore){
+.service('Converse', function(Conversation, CurrentUser, underscore, Mixpanel){
     //I still hate how this work... Must fix one day TODO
     this.conversations = [];
 
 
     this.converseWithUser = function(user) {
+        Mixpanel.track('Chat_View_Loaded');
         var flag = false;
         underscore.each(this.conversations, function(convo) {
             if(convo.other.id === user.id) {
@@ -37,6 +38,7 @@ angular.module('conversation')
     };
 
     this.converse = function(conversation) {
+        Mixpanel.track('Chat_View_Loaded');
         if(!underscore.findWhere(this.conversations, {id: conversation.id})) {
             if(this.conversations.length >= 3) {
                 this.conversations.pop();
@@ -104,6 +106,7 @@ angular.module('conversation')
     };
 
     this.postMessage = function(conversation, callback) {
+        Mixpanel.track('Chat_View_Send_Pressed');
         var message = conversation.newMessageText;
         conversation.newMessageText = "";
         var newMessage = {

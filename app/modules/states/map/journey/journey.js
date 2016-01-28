@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('states')
-.controller('JourneyController', function ($scope, $rootScope, $stateParams, Journey, Helper, CurrentUser, Map, $location, underscore) {
+.controller('JourneyController', function ($scope, $rootScope, $stateParams, Journey, Helper, CurrentUser, Map, $location, underscore, Mixpanel) {
     this.journey = null;
 
     $rootScope.$broadcast('tabChanged', {tab: 'journey'});
+    Mixpanel.track('Journey_Show');
 
     this.parseDate = function(date){
         return Helper.toJsDate(date);

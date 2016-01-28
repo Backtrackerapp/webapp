@@ -1,6 +1,10 @@
 angular.module('highlight')
-.controller('ViewHighlightController', function($scope, $rootScope, $state, debug, CurrentUser, Highlight, Util){
+.controller('ViewHighlightController', function($scope, $rootScope, $state, debug, CurrentUser, Highlight, Util, Mixpanel){
 	this.liking = false;
+	Mixpanel.track('Highlights_Open', {
+		id: $scope.highlight.id,
+		company: $scope.highlight.company
+	});
 	if($scope.highlight.user) this.profileImage = Util.parseProfileImage($scope.highlight.user, 65);
 
 	var images = {
@@ -8,6 +12,21 @@ angular.module('highlight')
 		"eat": 2,
 		"gem": 3,
 		"sleep": 3
+	}
+
+	var sub_categories = {
+		"ski": "gem",
+		"beach": "gem",
+		"pub": "drink",
+		"club": "drink",
+		"bar": "drink",
+		"market": "eat",
+		"restaurant": "eat",
+		"cafe": "eat",
+		"eat": "eat",
+		"drink": "drink",
+		"gem": "gem",
+		"sleep": "sleep"
 	}
 
 	var texts = [
@@ -18,12 +37,18 @@ angular.module('highlight')
 		'We may have misplaced our camera... If you visit please send photos to info@backtrackerapp.co.uk'
 	]
 
+	    $('.selected-highlight-view a.btn-highlight-website').on('click', function(){
+            Mixpanel.track('Highlight_View_Website');
+        });
+
 	function randomImage(category){
-		var max = images[category];
+		var c = sub_categories[category];
+		console.log(c);
+		var max = images[c];
 		if(max === undefined){
 			return 'sleep3.jpg';
 		}
-		return category + ( Math.floor(Math.random() * ( max )) + 1) + '.jpg';
+		return c + ( Math.floor(Math.random() * ( max )) + 1) + '.jpg';
 	}
 
 	function randomText(){
@@ -41,14 +66,22 @@ angular.module('highlight')
 	}
 
 	$scope.goUser = function(){
+		Mixpanel.track('Highlight_User_Selected');
 		if($scope.highlight.user){
 			$state.go('map.users', {id:$scope.highlight.user.id});
 		}
 	}
 
 	this.like = function(highlight) {
+		if(!CurrentUser.loggedIn) {
+			$rootScope.$broadcast('loginPanel', {
+                where: 'Like_Highlight'
+            });
+			return;
+		}
 		this.liking = true;
 		if(highlight.liked) {
+			Mixpanel.track('Highlight_Unlike')
 			Highlight.dislike({
 				id: highlight.id,
 				access_token: CurrentUser.accessToken
@@ -58,6 +91,7 @@ angular.module('highlight')
 				highlight.likes_count--;
 			}.bind(this));
 		} else {
+			Mixpanel.track('Highlight_Like')
 			Highlight.like({
 				id: highlight.id,
 				access_token: CurrentUser.accessToken
@@ -70,6 +104,15 @@ angular.module('highlight')
 	}
 
 	this.suggestHighlight = function() {
+		if(!CurrentUser.loggedIn) {
+			$rootScope.$broadcast('loginPanel', {
+                where: 'Suggest_Highlight_View'
+            });
+			return;
+		}
+		Mixpanel.track('Highlights_Suggest_Highlight', {
+			where: 'View_Highlight'
+		});
 		this.close();
 		$rootScope.$broadcast('showModal', {
           title: "Suggest Highlight",

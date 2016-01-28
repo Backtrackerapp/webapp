@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('conversation')
-.controller('ConversationListController', function ($scope, $rootScope, $interval, CurrentUser, Conversation, Converse, underscore) {
+.controller('ConversationListController', function ($scope, $rootScope, $interval, CurrentUser, Conversation, Converse, underscore, Mixpanel) {
     this.shown = false;
     this.conversations = [];
 
@@ -31,6 +31,7 @@ angular.module('conversation')
 
     $scope.$on('showConversations', function() {
         this.shown = true;
+        Mixpanel.track('Chat_List_View_Load');
         if(CurrentUser.loggedIn){
             Conversation.list(null, function(data) {
                 this.conversations = data.conversations;

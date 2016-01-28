@@ -72,18 +72,18 @@ angular.module('utils')
 
     this.edit = function(post, success, error, file, progress){
         //If file is given upload!!
-        var url = apiUrl+'/api/journeys/' + post.journey_id + '/posts/' + post.id
+        var url = apiUrl+'/api/v2/journeys/' + post.journey_id + '/posts/' + post.id
         if(file) {
             $upload.upload({
                 url: url,
                 method: 'PATCH',
                 fields: {
                     text: post.text,
-                    date: post.date,
-                    access_token: CurrentUser.accessToken
+                    date: post.date
                 },
                 file: file,
-                fileFormDataName: 'cover'
+                fileFormDataName: 'cover',
+                headers: this.header()
             })
             .progress(progress)
             .success(success)
@@ -91,8 +91,7 @@ angular.module('utils')
         } else {
             Http.patch(url, {
                 text: post.text,
-                date: post.date,
-                access_token: CurrentUser.accessToken
+                date: post.date
             }, success, error);
         }
     }

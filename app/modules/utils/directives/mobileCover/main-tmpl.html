@@ -1,0 +1,52 @@
+<div class="mobileCover">
+
+    <a href="//backtracker.co">
+        <img class="logo" src="images/brushlogo.png" />
+    </a>
+
+    <h1 ng-if="device != 'android'">Sorry the webapp isn't currently optimised to work with mobile devices.</h1>
+
+    <div class="iOS" ng-if="device === 'iOS'">
+        <h2>
+            But you are in luck! We are very proud of our lovely iOS app.
+            <br>
+            Check it out here.
+        </h2>
+        <a class="app-store" href="//itunes.apple.com/app/id979210947">
+            <img src="images/app-store.svg" />
+        </a>
+        <h2>
+            Already have the app? Then open this page in the app!
+        </h2>
+        <button ng-href="{{link}}">open</button>
+    </div>
+
+    <div class="android" ng-if="device === 'android'">
+        <h2>
+            Sadly the Android version isn't ready yet, but don't you worry, it's coming soon.
+            <br>
+            Enter your email to get news on its release.
+        </h2>
+        <form action="//backtrackerapp.us9.list-manage.com/subscribe/post?u=0eb962bcda4cb1f37d52e30d9&amp;id=7d77ffa194" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div class="mc-field-group">
+                <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+                </label>
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            </div>
+            <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0eb962bcda4cb1f37d52e30d9_7d77ffa194" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+        </form>
+        <img class="sad-android" src="images/sad_android.png" />
+    </div>
+
+    <div class="other" ng-if="device === 'other'">
+        <h2>
+            But don't worry, the next update will make all you dreams come true (it'll work on mobile).
+        </h2>
+    </div>
+
+</div>

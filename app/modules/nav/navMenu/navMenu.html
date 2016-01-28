@@ -25,35 +25,35 @@
             </a>
         </li> -->
         <li>
-            <a class="friends colored" href="#/friends">
+            <a class="friends colored" ng-click="goFriends()">
                 <div class="icon"><img src="images/friends.png" /></div>
                 Friends
             </a>
         </li>
         <li ng-if="user">
-            <a ng-href="#/users/{{user.id}}">
+            <a class="profile" ng-href="#/users/{{user.id}}">
                 <div class="icon"><img style="height: 25px;" src="images/profile.png" /></div>
                 Profile
             </a>
         </li>
         <li>
-            <a ng-click="navCtrl.chat()">
+            <a class="chat" ng-click="navCtrl.chat()">
                 <div class="icon"><img style="height: 28px;" src="images/chatMenu.png" /></div>
                 Chat
             </a>
         </li>
         <li>
-            <a href="//blogs.backtrackerapp.com">
+            <a class="articles" href="//blogs.backtracker.co">
                 <div class="icon"><img style="height: 30px;" src="images/articles.png" /></div>
-                Articles
+                Blog
             </a>
         </li>
-        <li>
-            <a href="//blogs.backtrackerapp.com/#!/gallery">
+        <!-- <li>
+            <a class="gallery" href="//blogs.backtracker.co/#!/gallery">
                 <div class="icon"><img style="height: 27px;" src="images/pictures.png" /></div>
                 Gallery
             </a>
-        </li>
+        </li> -->
         <!-- <li>
             <a href="">
                 <div class="icon"><img style="height: 27px;" src="images/settings.png" /></div>

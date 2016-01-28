@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('journey')
-.controller('ViewPostController', function($scope, $rootScope, $timeout, debug, Helper, Journey, CurrentUser, underscore, Map){
+.controller('ViewPostController', function($scope, $rootScope, $timeout, debug, Helper, Journey, CurrentUser, underscore, Map, Mixpanel){
 	//Models on $Scope - Post, Journey
 	this.popupShown = false;
 	this.prevDisabled = true;
@@ -13,12 +13,18 @@ angular.module('journey')
 
 	$scope.$watch('post', function(newVal){
 		if(newVal){
+			Mixpanel.track('Journey_View_Post', {
+				id: $scope.journey.id
+			});
 			Map.center(newVal.latitude, newVal.longitude, 7);
 		}
 	})
 
 
 	this.prev = function() {
+		Mixpanel.track('Journey_Nav', {
+			type: 'previous'
+		});
 		var delay = 300;
 		if(!this.prevDisabled) {
 			this.close(delay);
@@ -29,6 +35,9 @@ angular.module('journey')
 	};
 
 	this.next = function() {
+		Mixpanel.track('Journey_Nav', {
+			type: 'next'
+		});
 		var delay = 300;
 		if(!this.nextDisabled) {
 			this.close(delay);
@@ -56,6 +65,7 @@ angular.module('journey')
 	//Move this to a Post service... no more $resource!!! //TODO
 	this.deletePost = function(post) {
 		this.close();
+		Mixpanel.track('Journey_Delete_Post');
 		Journey.remove.post({
 			journey_id: post.journey_id,
 			post_id: post.id,
@@ -67,6 +77,7 @@ angular.module('journey')
 
 	this.editPost = function(post) {
 		this.close();
+		Mixpanel.track('Journey_Edit_Post');
 		$rootScope.$broadcast('showModal', {
 			title: "Edit Post",
 			template: "<edit-post></edit-post>",
@@ -75,6 +86,10 @@ angular.module('journey')
 	};
 
 	this.shareFacebook = function(post) {
+		Mixpanel.track('Journey_Share', {
+			social: 'Facebook',
+			mine: post.canEdit
+		});
 		FB.ui({
 			method: 'share',
 			href: 'http://app.backtrackerapp.com/#/journey/' + post.journey_id,
@@ -83,6 +98,10 @@ angular.module('journey')
 	}
 
 	this.shareTwitter = function(post) {
+		Mixpanel.track('Journey_Share', {
+			social: 'Twitter',
+			mine: post.canEdit
+		});
 		var top = ($(window).height() - 575) / 2;
 		var left = ($(window).width() - 400) / 2;
 		var opts = 'status=1,width=575,height=400,top=' + top + ',left=' + left;

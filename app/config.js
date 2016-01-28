@@ -1,7 +1,9 @@
 angular.module('config', [])
 
-.constant('apiUrl', '//floating-gorge-9124.herokuapp.com')
+.constant('mixpanel', '21e6052d0382aa0d3c25804e7d2eec8d')
 
-.constant('debug', true)
+.constant('apiUrl', 'https://floating-gorge-9124.herokuapp.com')
+
+.constant('debug', false)
 
 ;

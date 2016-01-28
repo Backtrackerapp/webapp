@@ -6,7 +6,7 @@
     background: #fff;
     width: 800px;
     z-index: 2;
-    box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.50);
+    box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.50);
     @include transition(left .3s);
     &.shown {
         left: 0;
@@ -364,23 +364,35 @@
     overflow-x: hidden;
     overflow-y: auto;
     font-family: $lato;
-    .settings {
+    .settings, .close {
         cursor: pointer;
         position: absolute;
+        background-color: $darkBlue;
         top: 65px;
-        right: 5px;
         border: 2px solid white;
         padding: 10px;
         color: white;
         font-family: "Lato", sans-serif;
         font-size: 15px;
         height: 40px;
-        width: 100px;
         img {
             height: 20px;
             position: absolute;
             right: 5px;
             top: 9px;
+        }
+    }
+    .settings {
+        left: 5px;
+        width: 100px;
+    }
+    .close {
+        right: 5px;
+        padding-right: 25px;
+        img {
+            height: 12px;
+            top: 12px;
+            right: 9px
         }
     }
     .loading-gif {
@@ -395,6 +407,20 @@
             text-align: center;
             padding-top: 125px;
             position: relative;
+            .follow-box {
+                position: absolute;
+                width: 100%;
+                bottom: -194px;
+                .btn {
+                    border: 2px solid white;
+                }
+                .load {
+                    padding: 7px 20px;
+                    .loading-gif {
+                        margin: 0;
+                    }
+                }
+            }
             .nav-blobs {
                 position: absolute;
                 bottom: -150px;
@@ -411,17 +437,26 @@
                     }
                 }
             }
+            .left-arrow, .right-arrow {
+                transition: transform 0.3s ease;
+            }
             .left-arrow {
                 cursor: pointer;
                 position: absolute;
                 left: 10px;
                 top: 150px;
+                &.left {
+                    transform: translateX(-100px);
+                }
             }
             .right-arrow {
                 cursor: pointer;
                 position: absolute;
                 right: 10px;
                 top: 150px;
+                &.right {
+                    transform: translateX(100px);
+                }
             }
             .about, .social, .main{
                 position: absolute;
@@ -499,6 +534,7 @@
                     top: 15px;
                     left: 60px;
                     width: 30px;
+                    max-height: 30px;
                 }
                 h1 {
                     position: absolute;
@@ -560,6 +596,12 @@
                 font-weight: 300;
             }
         }
+        .no-results {
+            cursor: default;
+            background: none;
+            text-align: center;
+            padding-top: 50px;
+        }
     }
 }
 
@@ -604,6 +646,11 @@
     }
     .back {
         left: 5px;
+        img {
+            position: absolute;
+            left: 5px;
+            top: 6px;
+        }
     }
     .save {
         right: 5px;

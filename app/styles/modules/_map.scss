@@ -15,6 +15,15 @@
   top: 70px !important;
 }
 
+.leaflet-marker-icon img {
+    width: 30px;
+    height: 27px;
+    position: relative;
+    top: 9px;
+    left: 9px;
+    background: white;
+}
+
 .myPost-icon {
   background-image: url('/images/markers/my-post.png');
   -webkit-background-size: 100%;
@@ -39,6 +48,48 @@
   background-size: 100%;
 }
 
+.highlight-market-icon {
+  background-image: url('/images/markers/highlightmarket.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-cafe-icon {
+  background-image: url('/images/markers/highlightcafe.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-restaurant-icon {
+  background-image: url('/images/markers/highlighteat.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-fest-icon {
+  background-image: url('/images/markers/highlightfest.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-pub-icon {
+  background-image: url('/images/markers/highlightpub.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-club-icon {
+  background-image: url('/images/markers/highlightclub.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-bar-icon {
+  background-image: url('/images/markers/highlightdrink.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
 .highlight-drink-icon {
   background-image: url('/images/markers/highlightdrink.png');
   -webkit-background-size: 100%;
@@ -47,6 +98,18 @@
 
 .highlight-gem-icon {
   background-image: url('/images/markers/highlightgem.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-ski-icon {
+  background-image: url('/images/markers/highlightgem.png');
+  -webkit-background-size: 100%;
+  background-size: 100%;
+}
+
+.highlight-beach-icon {
+  background-image: url('/images/markers/highlightbeach.png');
   -webkit-background-size: 100%;
   background-size: 100%;
 }
@@ -91,6 +154,7 @@
     position: relative;
     top: 9px;
     left: 9px;
+    background: white;
   }
 }
 

@@ -1,26 +1,55 @@
 'use strict';
 
 angular.module('user')
-.controller('LoginController', function ($scope, Auth, Facebook, User) {
+.controller('LoginController', function ($scope, Auth, Facebook, User, $stateParams, Mixpanel) {
     $scope.show = false;
-    $scope.content = 'signup';
+    $scope.content = 'prompt';
 
     $scope.first_name = '';
     $scope.last_name = '';
     $scope.email = '';
     $scope.password = '';
 
+    $scope.error = null;
+
+    if($stateParams.login === 't'){
+        console.log($stateParams);
+        $scope.show = true;
+    }
+
+    $scope.contentSignup = function(prompt){
+        if(prompt){
+            Mixpanel.track('Prompt_Join_Button');
+        }
+        $scope.content = 'signup';
+    }
+
+    $scope.contentLogin = function(){
+        $scope.content = 'login';
+    }
+
     $scope.loginFacebook = function(){
+        Mixpanel.track('Login', {
+            type: 'Email'
+        });
         Facebook.login(function(response){
             if(response.status === 'connected'){
-                Auth.connectedResponse(response);
+                Auth.connectedResponse(response).then(function(data){
+                    Mixpanel.identify(data.id);
+                });
             }
         });
     }
 
     $scope.loginEmail = function(){
-        Auth.loginEmail($scope.email, $scope.password).catch(function(error){
+        Mixpanel.track('Login', {type: 'Email'});
+        Auth.loginEmail($scope.email, $scope.password)
+        .then(function(data){
+            Mixpanel.identify(data.id);
+        })
+        .catch(function(error){
             console.log(error);
+            $scope.error = error.data.errors;
         });
     }
 
@@ -32,7 +61,11 @@ angular.module('user')
             password: $scope.password,
             privacy: 'green'
         }).then(function(data){
+            Mixpanel.alias(data.id);
+            Mixpanel.track('Create_An_Account', {type: 'Email'});
             Auth.auth(data.auth_token);
+        }, function(error){
+            $scope.error = error.data.errors;
         });
     }
 
@@ -42,7 +75,11 @@ angular.module('user')
                 User.create({
                     fb_token: response.authResponse.accessToken
                 }).then(function(data){
+                    Mixpanel.alias(data.id);
+                    Mixpanel.track('Create_An_Account', {type: 'Facebook'});
                     Auth.auth(data.auth_token);
+                }, function(error){
+                    $scope.error = error.data.errors;
                 });
             }
         });
@@ -51,11 +88,15 @@ angular.module('user')
     // $('.login-content .facebook').on('click', $scope.loginFacebook);
 
 
-    $scope.$on('authed', function(){
+    $scope.$on('loggedIn', function(){
         $scope.show = false;
     });
 
-    $scope.$on('loginPanel', function(){
+    $scope.$on('loginPanel', function(e, args){
+        Mixpanel.track('Login_Opened', args);
+        if(args.where === 'Nav_Bar'){
+            $scope.contentLogin();
+        }
         $scope.show = true;
     });
 });

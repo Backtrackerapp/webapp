@@ -1,7 +1,8 @@
 <my-marker
   ng-repeat="highlight in highlightsCtrl.highlights"
   highlight="{{highlight}}"
-  marker-type="highlight-{{highlight.category}}"
+  marker-type="highlight-{{ highlight.company ? 'default' : highlight.category}}"
+  image="{{highlight.company ? 'images/company-icons/'+highlight.company+'.png' : null}}"
   marker-width="48"
   marker-height="53"
   marker-offset-left="24"

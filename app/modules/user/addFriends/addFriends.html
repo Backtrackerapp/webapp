@@ -4,7 +4,7 @@
     <input type="text" auto-focus ng-model="addCtrl.input" ng-change="addCtrl.searchChanged()">
     <loader ng-show="addCtrl.loading"></loader>
     <div class="autocomplete-results table-view" ng-show="addCtrl.results.length > 0">
-      <list-user ng-repeat="user in addCtrl.results" user="user"></list-user>
+      <list-user ng-repeat="user in addCtrl.results" user="user" buttons="true"></list-user>
     </div>
   </div>
 

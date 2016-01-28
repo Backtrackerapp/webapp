@@ -7,9 +7,9 @@ angular.module('user')
   this.loading = false;
   this.results
 
-  this.suggested = User.suggested({
-    access_token: CurrentUser.accessToken
-  });
+  User.suggested().then(function(result){
+      this.suggested = result;
+  }.bind(this));
 
   this.searchChanged = function() {
     if(this.input.length > 2) {

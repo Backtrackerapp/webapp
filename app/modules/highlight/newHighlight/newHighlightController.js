@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('highlight')
-.controller('NewHighlightController', function ($scope, CurrentUser, Highlight) {
+.controller('NewHighlightController', function ($scope, CurrentUser, Highlight, Mixpanel) {
     //On $Scope params = {close: function to close modal}
 
     this.step = 1;
@@ -36,8 +36,14 @@ angular.module('highlight')
             text: this.postText,
             access_token: CurrentUser.accessToken
         }, function(){
+            Mixpanel.track('Highlight_Suggest_Submit', {
+                success: true
+            });
             $scope.params.close();
         }, function(data){
+            Mixpanel.track('Highlight_Suggest_Submit', {
+                success: false
+            });
             this.step = 1;
             if(data.lonlat) {
                 this.action = "Post";

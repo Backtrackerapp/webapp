@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('map')
-.controller('SearchController', function ($scope, Map, $timeout, $location) {
+.controller('SearchController', function ($scope, Map, $timeout, $location, Mixpanel) {
 
     $scope.search = '';
     $scope.options = {
@@ -21,16 +21,23 @@ angular.module('map')
 
     $scope.$watch('result', function(newVal, oldVal){
         if(newVal){
-            var ne = newVal.geometry.viewport.getNorthEast(),
-                sw = newVal.geometry.viewport.getSouthWest();
-            console.log(
-                [ne.lat(), ne.lng()],
-                [sw.lat(), sw.lng()]
-            );
-            Map.setBounds(
-                [ne.lat(), ne.lng()],
-                [sw.lat(), sw.lng()]
-            );
+            Mixpanel.track('Highlights_Search', {result: $scope.search});
+            console.log(newVal);
+            if(newVal.geometry.viewport){
+                var ne = newVal.geometry.viewport.getNorthEast(),
+                    sw = newVal.geometry.viewport.getSouthWest();
+                Map.setBounds(
+                    [ne.lat(), ne.lng()],
+                    [sw.lat(), sw.lng()]
+                );
+            } else {
+                Map.center(
+                    newVal.geometry.location.lat(),
+                    newVal.geometry.location.lng(),
+                    11
+                )
+            }
+
         }
     });
 

@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('states')
-  .controller('HighlightsController', function ($scope, $rootScope, $timeout, Highlight, CurrentUser, Map, Cache, $state, $location) {
+ .controller('HighlightsController', function ($scope, $rootScope, $timeout, Highlight, CurrentUser, Map, Cache, $state, $location, Mixpanel) {
     $rootScope.$broadcast('tabChanged', {tab: 'highlights'});
-    $rootScope.$broadcast('hideChrome');
+    $rootScope.$broadcast('showChrome');
+
+    Mixpanel.track('Highlights_Map');
 
     this.highlights = Cache.highlights;
     Map.resetCluster();
@@ -11,8 +13,8 @@ angular.module('states')
 
     //Again don't want this on $scope but no choice due to ng-view
     $scope.clickHighlight = function(highlight) {
-        var id = JSON.parse(highlight).id
-        $rootScope.$broadcast('showHighlight', {id: id});
+        var h = JSON.parse(highlight)
+        $rootScope.$broadcast('showHighlight', {id: h.id});
     }
 
     this.within = function(bounds){
@@ -41,7 +43,6 @@ angular.module('states')
     } else {
         $timeout(function(){
             this.getHighlights();
-            $rootScope.$broadcast('hideChrome');
             var map = Map.getMap();
             $timeout(function() {
                 if(!map.hasLayer(Map.markers)) {
@@ -56,10 +57,19 @@ angular.module('states')
     }.bind(this));
 
     $scope.$on('actionButtonPressed', function(e, args) {
-      $rootScope.$broadcast('showModal', {
-        title: "Suggest Highlight",
-        template: "<new-highlight></new-highlight>"
-      });
+        if(!CurrentUser.loggedIn) {
+			$rootScope.$broadcast('loginPanel', {
+                where: 'Suggest_Highlight_Action_Button'
+            });
+			return;
+		}
+        Mixpanel.track('Highlights_Suggest_Highlight', {
+        	where: 'Action_Button'
+        });
+        $rootScope.$broadcast('showModal', {
+            title: "Suggest Highlight",
+            template: "<new-highlight></new-highlight>"
+        });
     });
 
 });

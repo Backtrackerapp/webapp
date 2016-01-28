@@ -13,7 +13,7 @@
             templateUrl: "modules/states/map/map.html"
         })
         .state('map.current', {
-            url: "/",
+            url: "/?login&menu",
             templateUrl: "modules/states/map/journey/journey.html",
             controller: 'CurrentJourneyController',
             controllerAs: 'journeyCtrl'
@@ -30,7 +30,7 @@
             controller: 'HighlightsController',
             controllerAs: 'highlightsCtrl'
         })
-        
+
         .state('map.friends', {
             url: '/friends',
             templateUrl: 'modules/states/map/friends/friends.html',

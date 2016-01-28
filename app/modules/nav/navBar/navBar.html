@@ -8,17 +8,17 @@
             <button ng-click="navCtrl.login()">Login</button>
         </li>
         <li class="user-details" ng-if="navCtrl.user">
-            <div class="user-open" ng-click="navCtrl.showProfile()">
+            <div class="user-open" ng-click="navCtrl.openProfile()">
                 <img ng-src="{{navCtrl.profileImage}}" alt="" />
                 <span>{{ navCtrl.user.first_name }} {{ navCtrl.user.last_name}}</span>
             </div>
-            <div class="user-view user-view-profile" ng-class="{shown: navCtrl.profileShown}">
+            <!-- <div class="user-view user-view-profile" ng-class="{shown: navCtrl.profileShown}">
                 <user-content user='navCtrl.user' ng-show='navCtrl.profileShown'></user-content>
-            </div>
+            </div> -->
         </li>
-        <li class="header-icon-li" ng-if="navCtrl.user">
-            <a ng-click="navCtrl.openProfile()" class="header-icon profile"><div><img src="images/header-profile.svg" /></div></a>
-        </li>
+        <!-- <li class="header-icon-li" ng-if="navCtrl.user">
+            <a  class="header-icon profile"><div><img src="images/header-profile.svg" /></div></a>
+        </li> -->
         <!-- <li class="header-icon-li">
             <a ng-click="navCtrl.showSettings()" class="header-icon settings" ng-class="{active: navCtrl.settingsShown}"></a>
             <div class="user-view-settings" ng-class="{shown: navCtrl.settingsShown}">
@@ -34,7 +34,7 @@
             </div>
         </li> -->
         <li class="header-icon-li">
-            <a href="http://www.backtrackerapp.com/info.html" target="_blank" class="header-icon help"></a>
+            <a href="http://www.backtracker.co/info.html" target="_blank" class="header-icon help"></a>
         </li>
     </ul>
 </div>

@@ -6,6 +6,13 @@
     <base href="/" target="_blank" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+
+    <!-- Applinks -->
+    <meta property="al:ios:url" content="backtrackerapp://" />
+
+    <!-- Apple Smart Banner -->
+    <meta name="apple-itunes-app" content="app-id=979210947, app-argument=backtrackerapp://">
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -35,7 +42,6 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav-bar></nav-bar>
 
     <div ui-view>
 
@@ -81,6 +87,8 @@
     <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
     <script src="bower_components/ng-underscore/build/ng-underscore.js"></script>
     <script src="bower_components/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="bower_components/mixpanel/mixpanel-jslib-snippet.js"></script>
+    <script src="bower_components/angular-mixpanel/src/angular-mixpanel.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -89,6 +97,7 @@
         <script src="app.js"></script>
 
         <script src="modules/utils/main.js"></script>
+            <script src="modules/utils/services/Mixpanel.js"></script>
             <script src="modules/utils/services/Util.js"></script>
             <script src="modules/utils/services/Http.js"></script>
             <script src="modules/utils/services/FeaturedJourneys.js"></script>
@@ -107,6 +116,7 @@
             <script src="modules/utils/directives/autoFocus.js"></script>
             <script src="modules/utils/directives/loader.js"></script>
             <script src="modules/utils/directives/mainLoader/mainLoader.js"></script>
+            <script src="modules/utils/directives/mobileCover/main.js"></script>
 
         <script src="modules/nav/main.js"></script>
             <script src="modules/nav/navBar/navBarController.js"></script>

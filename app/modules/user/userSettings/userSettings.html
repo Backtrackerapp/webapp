@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="back" ng-click="$parent.settings = false">
-        Back
+        <img src="images/back-arrow.svg" /> Back
     </div>
     <div class="save" ng-click="save()" ng-class="{saving: saving, error: error}">
         <svg width="21px" height="20px" viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
@@ -65,23 +65,23 @@
     </div>
     <div class="form info" ng-show="tab === 'info'">
         <div>
-            <div><img src="images/settings-name.svg" /></div> <input ng-model="name" placeholder="{{user.first_name + ' ' + user.last_name}}">
+            <div><img src="images/settings-name.svg" /></div> <input ng-model="name" placeholder="Full name">
         </div>
         <div></div>
         <div>
-            <div><img src="images/settings-twitter.png" /></div> <input ng-model="twitter" placeholder="{{user.twitter || 'Twitter url'}}">
+            <div><img src="images/settings-twitter.png" /></div> <input ng-model="twitter" placeholder="Twitter url">
         </div>
         <div>
-            <div><img class="facebook" src="images/settings-facebook.png" /></div> <input ng-model="facebook" placeholder="{{user.facebook || 'Facebook url'}}">
+            <div><img class="facebook" src="images/settings-facebook.png" /></div> <input ng-model="facebook" placeholder="Facebook url">
         </div>
         <div>
-            <div><img src="images/settings-instagram.png" /></div> <input ng-model="instagram" placeholder="{{user.instagram || 'Instagram url'}}">
+            <div><img src="images/settings-instagram.png" /></div> <input ng-model="instagram" placeholder="Instagram url">
         </div>
         <div>
-            <div><img src="images/settings-web.png" /></div> <input ng-model="website" placeholder="{{user.webpage || 'Website url'}}">
+            <div><img src="images/settings-web.png" /></div> <input ng-model="website" placeholder="Website url">
         </div>
         <div class="about">
-            <div><img class="about" src="images/settings-about.svg" /></div> <textarea ng-model="about" placeholder="{{user.aboutme || 'Tell the world who you are!'}}">
+            <div><img class="about" src="images/settings-about.svg" /></div> <textarea ng-model="about" placeholder="Tell us a bit about yourself">
         </div>
     </div>
 </div>

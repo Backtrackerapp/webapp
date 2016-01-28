@@ -1,12 +1,5 @@
 'use strict';
 
-/**
-* @ngdoc function
-* @name webappApp.controller:MainCtrl
-* @description
-* # MainCtrl
-* Controller of the webappApp
-*/
 angular.module('backtrackerApp')
 .controller('EditPostController', function ($scope, $filter, $rootScope, Journey, debug) {
   //on $scope params = {post:post, close:function()}
@@ -27,7 +20,7 @@ angular.module('backtrackerApp')
     this.step = 2;
     var file = null;
     if(this.files && this.files.length > 0) file = this.files[0];
-    Journey.edit(this.post, 
+    Journey.edit(this.post,
       function() {
         $rootScope.$broadcast('reloadJourney');
         $scope.params.close();

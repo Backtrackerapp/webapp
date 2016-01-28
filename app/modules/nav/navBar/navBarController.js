@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nav')
-.controller('NavController', function ($scope, CurrentUser, User, Auth, $timeout, $rootScope, $state, Util) {
+.controller('NavController', function ($scope, CurrentUser, User, Auth, $timeout, $rootScope, $state, Util, Mixpanel, $stateParams) {
     this.settingsButtonDisabled = true;
     this.user = null;
     this.privacy = null;
@@ -13,6 +13,11 @@ angular.module('nav')
     this.menu = false;
     this.menuHover = false;
     this.profileImage = null;
+
+
+    if($stateParams.menu){
+        this.menuHover = true
+    }
 
     this.toggleMenu = function(force) {
         if(force !== undefined)
@@ -28,10 +33,16 @@ angular.module('nav')
     }
 
     this.openProfile = function() {
-        $state.go('map.users', {id: this.user.id});
+        Mixpanel.track('Nav_Bar_Profile');
+        if($state.current.name === 'map.users' && $state.params.id === this.user.id +''){
+            $rootScope.$broadcast('slideProfile', {id: this.user.id});
+        } else {
+            $state.go('map.users', {id: this.user.id});
+        }
     }
 
     this.showProfile = function() {
+        Mixpanel.track('Nav_Bar_Profile_Thumb');
         if(this.profileShown) {
             this.profileShown = false;
         } else {
@@ -67,7 +78,7 @@ angular.module('nav')
     };
 
     this.login = function() {
-        $rootScope.$broadcast('loginPanel');
+        $rootScope.$broadcast('loginPanel', {where: 'Nav_Bar'});
     };
 
     this.logout = function() {

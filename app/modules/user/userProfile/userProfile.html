@@ -4,10 +4,7 @@
     <div ng-if="!settings">
         <div class="profile-top" ng-style="{'background-image': 'url('+cover_image+')'}">
             <div class="top-content">
-                <div class="about" ng-class="{left: content > 0}">
-                    <h1>"{{user.aboutme || "I'm really very interesting, promise"}}"</h1>
-                </div>
-                <div class="main" ng-class="{left: content > 1, right: content < 1}">
+                <div class="main" ng-class="{left: content > 0}">
                     <div class="profile-image">
                         <img ng-src="{{profile_image}}" />
                     </div>
@@ -15,16 +12,19 @@
                         <h1>{{user.first_name}} {{user.last_name}}</h1>
                     </div>
                 </div>
-                <div class="social" ng-class="{right: content < 2}">
-                    <a target="_blank" ng-href="{{fbpage}}"><img src="images/facebook-white.png" ng-class="{active: fbpage}"/></a>
-                    <a target="_blank" ng-href="{{user.instagram}}"><img src="images/instagram-white.png" ng-class="{active: user.instagram}"/></a>
-                    <a target="_blank" ng-href="{{user.twitter}}"><img src="images/twitter-white.png" ng-class="{active: user.twitter}"/></a>
-                    <a target="_blank" ng-href="{{user.webpage}}"><img src="images/web-white.svg" ng-class="{active: user.webpage}"/></a>
+                <div class="about" ng-class="{left: content > 1, right: content < 1}">
+                    <h1>"{{user.aboutme || "I'm really very interesting, promise"}}"</h1>
                 </div>
-                <div class="right-arrow" ng-click="right()">
+                <div class="social" ng-class="{right: content < 2}">
+                    <a class="facebook" target="_blank" ng-click="trackLink('facebook')" ng-href="{{fbpage}}"><img src="images/facebook-white.png" ng-class="{active: fbpage}"/></a>
+                    <a class="instagram" target="_blank" ng-click="trackLink('instagram')" ng-href="{{user.instagram}}"><img src="images/instagram-white.png" ng-class="{active: user.instagram}"/></a>
+                    <a class="twitter" target="_blank" ng-click="trackLink('twitter')" ng-href="{{user.twitter}}"><img src="images/twitter-white.png" ng-class="{active: user.twitter}"/></a>
+                    <a class="webpage" target="_blank" ng-click="trackLink('webpage')" ng-href="{{user.webpage}}"><img src="images/web-white.svg" ng-class="{active: user.webpage}"/></a>
+                </div>
+                <div class="right-arrow" ng-click="right()" ng-class="{right: content === 2}">
                     <img src="images/profile-arrow-right.svg" />
                 </div>
-                <div class="left-arrow" ng-click="left()">
+                <div class="left-arrow" ng-click="left()" ng-class="{left: content === 0}">
                     <img src="images/profile-arrow-left.svg" />
                 </div>
                 <div class="nav-blobs">
@@ -32,10 +32,18 @@
                     <span ng-class="{active: content === 1}"></span>
                     <span ng-class="{active: content === 2}"></span>
                 </div>
+                <div class="follow-box">
+                    <span ng-hide="user.is_me">
+                        <a ng-click="follow(user)" ng-show="user.following_status == 'not_following' && !followRequest" class="btn btn-blue">Follow</a>
+                        <a ng-click="unfollow(user)" ng-show="user.following_status == 'following' && !followRequest" class="btn btn-blue">Unfollow</a>
+                        <a class="btn btn-blue" ng-show="user.following_status == 'waiting' && !followRequest">Request Sent</a>
+                        <a class="btn btn-lightGrey load" ng-show="followRequest"><loader></loader></a>
+                    </span>
+                </div>
             </div>
             <div class="nav">
                 <div class="journey" ng-click="changeView('journey')" ng-class="{active: view === 'journey'}">
-                    <h1>{{user.journeys.length}} Journeys</h1>
+                    <img src="images/journey-profile.svg" /> <h1>{{user.journeys.length}} Journeys</h1>
                 </div
                 ><div class="photos" ng-click="changeView('photos')" ng-class="{active: view === 'photos'}">
                     <img src="images/pictures.svg" /><h1>Photos</h1>
@@ -51,6 +59,9 @@
         <div class="settings" ng-click="editUser()" ng-if="user.is_me">
             Settings <img src="images/header-icons/settings.png" align="middle"/>
         </div>
+        <div class="close" ng-click="close()">
+            Close <img src="images/whitex.png" align="middle"/>
+        </div>
         <div class="journeys" ng-show="view === 'journey'">
             <div class="journey-thumb" ng-repeat="journey in user.journeys" ng-click="goJourney(journey)">
                 <span class="post-count">{{journey.posts_count}}</span><span class="name"><h1>{{journey.name}}</h1></span>
@@ -60,12 +71,14 @@
             <loader ng-if="loading"></loader>
             <ul>
                 <list-user ng-repeat="user in user.followers" user="user" buttons="true" ng-click="goUser(user)"></list-user>
+                <li class="no-results" ng-if="!loading && user.followers.length == 0">{{ user.is_me ? "You've got no followers" : 'This user has no followers'}}</li>
             </ul>
         </div>
         <div class="following" ng-show="view === 'following'">
             <loader ng-if="loading"></loader>
             <ul>
                 <list-user ng-repeat="user in user.following" user="user" buttons="true" ng-click="goUser(user)"></list-user>
+                <li class="no-results" ng-if="!loading && user.followers.length == 0">{{ user.is_me ? "You're not following anyone" : "This user isn't following anyone"}}</li>
             </ul>
         </div>
     </div>

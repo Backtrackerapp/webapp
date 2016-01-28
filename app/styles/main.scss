@@ -45,6 +45,12 @@ body {
   }
 }
 
+@media screen and (max-width: 600px){
+    .app {
+        display: none;
+    }
+}
+
 .loginPanel{
     position: fixed;
     top: 0;
@@ -61,8 +67,9 @@ body {
         opacity: 0.8;
     }
     .login-content {
-        background: white url('../images/login.png') no-repeat center center;
-        background-size: cover;
+        // background: white url('../images/login.png') no-repeat center center;
+        // background-size: cover;
+        background-color: rgb(216,216,216);
         text-align: center;
         padding: 10px;
         border-radius: 20px;
@@ -71,23 +78,72 @@ body {
         top: 70px;
         margin: 0 auto;
         width: 600px;
-        height: 475px;
+        height: 510px;
         overflow: hidden;
-        &.login {
+        .error {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            h4 {
+                color: #d0021b;
+            }
+        }
+        &.login, &.prompt {
             .signup{
                 transform: translateX(-600px);
             }
         }
-        &.signup {
+        &.signup, &.prompt {
             .login {
                 transform: translateX(600px);
+            }
+        }
+        &.signup, &.login {
+            .prompt{
+                display: none;
             }
         }
         .login, .signup {
             position: absolute;
             transition: transform 0.5s ease;
         }
-        img {
+        .prompt {
+            transition: opacity 0.3s ease;
+            display: block;
+            h3 {
+                margin: 1em 0;
+            }
+            h2 {
+                line-height: 22px;
+            }
+            h4 {
+                line-height: 22px;
+            }
+            img {
+                position: absolute;
+                top: 209px;
+                right: 111px;
+            }
+            button {
+                display: inline;
+                width: 280px;
+                padding: 0;
+                margin-top: 100px;
+                border: 1px solid $darkBlue;
+                background: $darkBlue;
+                color: white;
+                // &.yes {
+                //
+                // }
+                // &.no {
+                //     background: $errorRed;
+                //     color: white;
+                //     border: 1px solid $errorRed;
+                // }
+            }
+            .line {}
+        }
+        .top-logo {
             height: 82px;
             display: block;
             margin: 0 auto;
@@ -103,6 +159,13 @@ body {
         button {
             font-family: $lato;
             width: 300px;
+        }
+        .signup-text {
+            margin-top: 2em;
+        }
+        .signup-bottom {
+            width: 190px;
+            background: white;
         }
         .facebook {
             background: #254FA6;
@@ -142,5 +205,68 @@ body {
                 cursor: default;
             }
         }
+    }
+}
+
+.mobileCover {
+    z-index: 20;
+    background: $darkBlue;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: none;
+    font-family: $lato;
+    overflow-x: hidden;
+    h1 {
+        color: white;
+        margin-bottom: 20px;
+    }
+    h2 {
+        color: white;
+    }
+    .logo {
+        width: 80%;
+        max-width: 250px;
+        margin-bottom: 50px;
+    }
+    .app-store img {
+        margin: 10px;
+    }
+    button {
+        background: white;
+        color: $darkBlue;
+        width: 135px;
+        height: 40px;
+        border: none;
+        margin: 10px;
+    }
+    form {
+        margin-top: 20px;
+        label {
+            color: white;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 80%;
+            max-width: 250px;
+            &.button {
+                background: $orange;
+                color: white;
+                border-color: white;
+            }
+        }
+    }
+    .sad-android {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        width: 20%;
+        z-index: -1;
+    }
+    @media screen and (max-width: 600px){
+        display: block;
     }
 }
