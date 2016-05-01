@@ -14,6 +14,7 @@ angular.module('highlight')
 
 
     $scope.user = CurrentUser.loggedIn;
+    $scope.result = null;
 
     this.submit = function() {
         // Finished the first page. ----this is awful---- we need to use HTML to require fields TODO
@@ -31,8 +32,13 @@ angular.module('highlight')
         }
         // Post highlight to server... This works but! I have no idea how :P
         this.step = 2;
+
+        console.log($scope.result);
         Highlight.save({
-            name: this.searchField,
+            name: $scope.result.name,
+            address: $scope.result.formatted_address,
+            latitude: $scope.result.geometry.location.lat(),
+            longitude: $scope.result.geometry.location.lng(),
             text: this.postText,
             access_token: CurrentUser.accessToken
         }, function(){

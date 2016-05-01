@@ -54,7 +54,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 constants: {
-                    apiUrl: '//floating-gorge-9124.herokuapp.com'
+                    apiUrl: '//backtrackerdev.herokuapp.com'
                 }
             },
             prod: {
